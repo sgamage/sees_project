@@ -50,11 +50,11 @@ SeesProject::Application.configure do
   config.action_mailer.default :charset => "utf-8"
   config.action_mailer.perform_deliveries = true
   ActionMailer::Base.smtp_settings = {
-                    :address        => "smtp.gmail.com",
-                    :port           => 587,
+                    :address        => "mail.alliontechnologies.railsplayground.net",
+                    :port           => 24,
                     :authentication => 'plain',
-                    :user_name      => "smtpsamplemailsender@gmail.com",
-                    :password       => "smtpsamplemailsender",
+                    :user_name      => "mailtester@alliontechnologies.railsplayground.net",
+                    :password       => "welcome",
                     :enable_starttls_auto => true
   }
 end
