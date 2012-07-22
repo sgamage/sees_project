@@ -1,0 +1,26 @@
+<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put, :class => "formbuilder" }) do |f| %>
+  <form class="formbuilder"><div class="login-sub">
+      <fieldset><legend>Change Password</legend>
+        <ol>
+          <li> <%= devise_error_messages! %><%= f.hidden_field :reset_password_token %></li>
+          <li>
+            <label>Email: </label>
+            <span class="field">princ@gmail.com</span>
+          </li>
+          <li>
+            <label>New password: <em>*</em></label>
+            <%= f.password_field :password %>
+          </li> 
+          <li>
+            <label>Confirm password: <em>*</em></label>
+            <%= f.password_field :password_confirmation %>
+          </li> 
+          <li class="buttons">
+            <div class="buttons"><%= f.submit "Change my password", :class => 'submit-button button'   %>
+            <%= render :partial => "devise/shared/links" %></div>
+          </li>
+        </ol>        
+      </fieldset>
+    </div></form>
+<% end %>
+

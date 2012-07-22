@@ -1,0 +1,32 @@
+<form class="formbuilder">
+<%= render :partial => 'schooldetails', :locals => {:school => @school} %>
+<%= render :partial => 'feedbackquestion', :locals => {:student => @student} %>
+<%= form_for(@comment) do |f| %>
+  <fieldset>
+    <legend>Update Status</legend>
+    <div ><ol>
+        <li>
+          <label >Application Status:</label>
+          <%= collection_select(:applicationstatus, :id, ApplicationStatus.all, :id, :status) %>
+        </li>
+      </ol>
+    </div>
+    <div ><ol>
+        <li>
+          <label >Comment:</label>
+          <%= f.text_area :comment_text, :class => "normal" %>
+        </li>
+      </ol>
+    </div>
+    <div class="clr"></div>
+  </fieldset>
+
+  <div class="buttons ">
+    <%= f.submit "Update", :class => "login-set-align submit-button button" %>
+    <%#= button_to "Save", comments_path, :method => "get" %>
+    <%#= button_to "Forward To Principal", comments_path, :method => "get" %>
+     <%= link_to "back", root_path, :class => "submit-button button" %>
+  </div>
+ 
+<% end %>
+</form>

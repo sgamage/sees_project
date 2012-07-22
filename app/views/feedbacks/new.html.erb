@@ -1,0 +1,33 @@
+<%= render :partial => 'students/studentdetails', :locals => {:student => @student} %>
+<%= form_for(@feedback, :html =>{:class => "formbuilder"}) do |f| %>
+    <%= f.hidden_field :student_id, :value => @student.try(:id) %>
+  	<%= f.hidden_field :user_id, :value => current_user.id %>
+  	<%= f.hidden_field :school_id, :value => @student.try(:school).try(:id) %>
+<fieldset>
+    <legend>Principals Feedback</legend>
+    <p>
+      <label>Support the student application: <em>*</em></label>
+      <%= f.select(:support_student, [['Yes', 1], ['No', 0]], {}) %>
+    </p>
+    <div id="principal_feedback_step1">
+      <p>
+        <% support_statues.each do |support_status| %>
+  	   <label>&nbsp;</label><%= f.radio_button :application_support_status_id, support_status.id %><%= support_status.status %><br />
+  	<% end %>
+       
+      </p>
+      <p id="other-textarea">
+        <label>Comment: <em>*</em></label>
+        <%= f.text_area :application_support_comment, :class => "normal"  %>
+      </p>
+  	
+  	
+  </div>
+  </fieldset>
+  <br />
+  
+  <div class="buttons">
+    <%= f.submit  "Update", :class => "login-set-align submit-button button" %>
+    <%= link_to "back" , root_path , :class => "submit-button button" %>
+  </div>
+<% end %>

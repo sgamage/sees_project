@@ -1,0 +1,23 @@
+<% fb = student.feedback %>
+<%# questions_answers = fb.feedback_question_answers %>
+<% categories = category_list %>
+
+<% categories.each do |category| %>
+  <fieldset>
+    <legend><%= category.category_name %></legend>
+    <div ><ol>
+        <% questions = questions_for_category(category.id) %>
+        <li>
+         
+          <% questions.each do |question| %>
+            <label class="long"><%= question.question_text %>: </label>
+            <label class="field">
+            	<%if fb.try(:id) %>
+            	 <%= FeedbackQuestionAnswer.show_selected_answer(fb.id, question.id) %>
+            	<% end %> 
+            </label>
+          <% end %>
+        </li>
+      </ol></div>
+  </fieldset>
+<% end %>

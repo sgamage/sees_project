@@ -1,0 +1,162 @@
+<form class="formbuilder">
+<fieldset><legend>Student Details</legend>
+  <div><ol>
+      <li>
+        <label>Student Name:</label>
+        <label class="field"><%= student.title %> <%= student.first_name %> <%= student.last_name %></label>
+      </li>
+      <li>
+        <label>Date of birth:</label>
+        <label class="field"><%= student.date_of_birth %></label>
+      </li>
+      <li>
+        <label>Parent or carers name:</label>
+        <label class="field"><%= student.parent_name %></label>
+      </li>
+      <li>
+        <label>Parent or carers phone:</label>
+        <label class="field"><%= student.parent_phone %></label>
+      </li>
+      <li>
+        <label>Parent or carers mobile:</label>
+        <label class="field"><%= student.parent_mobile %></label>
+      </li>
+      <li>
+        <label>UAC applicant number:</label>
+        <label class="field"><%= student.uac_number %></label>
+      </li>
+    </ol>
+  </div>
+</fieldset>
+  <fieldset><legend>Contact Details</legend>
+    <div ><ol>
+        
+        <li>
+          <label>Address:</label>
+          <span class="field"><%= student.address1 %>,<br/> <%= student.address2 %><br/><%= student.suburb %><br/><%= student.try(:state).try(:name) %><br/><%= student.post_code %></span>
+        </li>
+        <li>
+          <label>Email:</label>
+          <label class="field"><%= student.email %></label>
+        </li>
+        <li>
+          <label>Mobile:</label>
+          <label class="field"><%= student.mobile %></label>
+        </li>
+        <li>
+          <label>Phone:</label>
+          <label class="field"><%= student.phone %></label>
+        </li>
+      </ol>
+
+    </div>
+    <div class="clr"></div>
+  </fieldset>
+    <fieldset>
+    <legend>Application Details</legend>
+    <p>
+      <label >School Name:</label>
+      <label class="field"><%= student.try(:school).try(:name) %></label>
+    </p>
+    <p>
+      <label >Course:</label>
+      <label class="field"><%= student.try(:course).try(:name) %></label>
+      </select>
+    </p>
+    <p><b>1. Outline the co-curricular activities in which you have been involved in. These could be sports, cultural and or community activities, or school leadership roles. Choose one example and tell us why you chose to undertake that activity and what you learned or gained from it.</b>
+      <br>
+      <span class="field"><%= student.note1 %></span></p>
+    <p>
+
+      <b>2. What would you consider your three best academic achievements? Select the one or which most you are proud of and tell us why it is important to you: </b>
+      <br><span class="field"> <%= student.note2 %></span>
+    </p>
+    <p>
+
+      <b>3. Tell us why you want to study the course you have chosen. What is your interest in this area and what do you hope to achieve from studying this course?</b> 
+      <br><span class="field"><%= student.note3 %></span>
+    </p>
+  </fieldset>
+  <fieldset>
+    <legend>Attachment details</legend>
+    <div>
+      <p>
+        <label for="student_application_attachment1">Attachment 1 name</label>
+        <a href="#">1</a>
+      </p>
+      <p>
+        <label for="student_application_attachment2">Attachment 2 name</label>
+        <a href="#">1</a>
+      </p>
+      <p>
+        <label for="student_application_attachment3">Attachment 3 name</label>
+        <a href="#">1</a>
+      </p>
+    </div>
+  </fieldset>
+</form>
+
+<div style="display:none;">
+<p>
+  <b>Confirm email:</b>
+  <%= student.confirm_email %>
+</p>
+
+<p>
+  <b>Mobile:</b>
+  <%= student.mobile %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%= student.phone %>
+</p>
+
+<p>
+  <b>Address1:</b>
+  <%= student.address1 %>
+</p>
+
+<p>
+  <b>Address2:</b>
+  <%= student.address2 %>
+</p>
+
+<p>
+  <b>Suburb:</b>
+  <%= student.suburb %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%= student.try(:state).try(:name) %>
+</p>
+
+<p>
+  <b>Post code:</b>
+  <%= student.post_code %>
+</p>
+
+<p>
+  <b>School:</b>
+  <%= student.try(:school).try(:name) %>
+</p>
+
+<p>
+  <b>Faculty:</b>
+  <%= student.try(:faculty).try(:name) %>
+</p>
+<p>
+  <b>Declaration1:</b>
+  <%= student.declaration1 %>
+</p>
+
+<p>
+  <b>Completed:</b>
+  <%= student.completed %>
+</p>
+<p>
+  <b>Status:</b>
+  <%= student.application_status_id %>
+</p>
+</div>

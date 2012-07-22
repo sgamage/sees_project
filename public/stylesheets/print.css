@@ -1,0 +1,262 @@
+a {
+	text-decoration:none;
+}
+body {
+	font-size:9pt;
+	margin:0;
+	font-family:"Replica Std", Arial, sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-size:200%;
+	padding:0;
+	margin:30px 0 0 0;
+	font-weight:normal;
+}
+h1 {
+	text-transform:uppercase;
+}
+h2 {
+	font-size:170%;
+}
+h3 {
+	font-size:150%;
+}
+h4 {
+	font-size:130%;
+}
+h5 {
+	font-size:110%;
+}
+h6 {
+	font-size:100%;
+}
+p {
+	margin:.500em 0;
+}
+hr {
+	height:0;
+	border:1px solid #ccc;
+	clear:none;
+	margin:1.000em 0;
+}
+.clearfix, .clear {
+	clear:left;
+}
+#content h1 {
+	font-size:180%;
+}
+#content h1:first-child {
+	margin:0;
+}
+#head h1 {
+	margin:0;
+}
+#head h1 #logo {
+	display:list-item;
+	list-style-image:url(../images/common/university_sydney_logo_mono.gif);
+	list-style-position:inside;
+	font-size:0;
+	color:#fff;
+	float:left;
+}
+#head h1 #tag-line {
+	float:right;
+	text-align:right;
+	width:70%;
+}
+#mid {
+	padding-top:1.000em;
+}
+body.splash #mid {
+	padding-top:6.000em;
+}
+.breadcrumb {
+	font-size:80%;
+	padding:6.000em 0 0 0;
+	clear:both;
+}
+.breadcrumb .prefix {
+	font-weight:bold;
+}
+#splashpod {
+	display:none;
+}
+#sidebar {
+	width:23%;
+	float:right;
+}
+#sidebar dl, #sidebar dt, #sidebar dd {
+	margin:0;
+	padding:0;
+}
+#sidebar .feature dt, #sidebar .feature h3 {
+	text-transform:uppercase;
+	font-size:130%;
+	margin:0;
+}
+#sidebar .feature {
+	margin-bottom:3.000em;
+}
+#sidebar .featured-link {
+	display:block;
+}
+#sidebar .section {
+	margin:.500em 0 1.500em 0;
+}
+#content {
+	width:70%;
+	padding-right:5%;
+	border-right:1px solid #ccc;
+}
+#content.nofeature {
+	width:auto;
+	padding:0;
+	border:none;
+}
+#content table {
+	border-collapse:collapse;
+	border-spacing:0;
+	background:#fff;
+	margin-top:1em;
+}
+#content table th, #content table td {
+	padding:.25em;
+	margin:0;
+}
+#content table th {
+	border-bottom:2px solid #333;
+}
+#content table td {
+	border-bottom:1px solid #ccc;
+}
+#content ul.news, #content ul.teaser-list {
+	padding:0;
+}
+#content ul.news li, #content ul.teaser-list {
+	list-style:none;
+	padding:1em 0;
+}
+#content ul.news li img {
+	float:left;
+}
+#content ul.news li h2 {
+	margin:0 0 .25em 0;
+}
+#content ul.news li p {
+	margin-left:71px;
+}
+#content .image-gallery {
+	padding:0;
+}
+#content .image-gallery li img {
+	padding:0;
+	border:1px solid #e6e6e6;
+}
+#content .image-gallery li {
+	width:100px;
+	height:100px;
+	margin:1em;
+	float:left;
+	list-style:none;
+	padding:0;
+}
+#content .image-gallery.no-download a {
+	width:100px;
+	height:100px;
+	background:no-repeat top left;
+}
+#content ul.teaser-list {
+	font-size:1.09em;
+	margin-top:2em;
+	padding:0;
+}
+#content ul.teaser-list li {
+	list-style:none;
+	float:left;
+	min-width:30%;
+	max-width:50%;
+	display:block;
+	width:45%;
+	min-height:8em;
+	height:8em;
+	margin:0 1.000em;
+}
+#content ul.teaser-list div {
+	clear:none;
+}
+#content ul.teaser-list h2 {
+	margin:0 0 .150em 0;
+	position:relative;
+	top:-0.126em;
+	clear:none;
+}
+#content ul.teaser-list h2 a:hover {
+	text-decoration:underline;
+}
+#content ul.teaser-list p {
+	margin:0 0 .3em 6.625em;
+	font-size:1em;
+}
+#content ul.teaser-list img {
+	float:left;
+	width:5.678em;
+	height:5.678em;
+	padding:1px;
+	margin:0 .7em 0 0;
+}
+#content div.video_grid {
+	margin-top:1.000em;
+}
+#content div.video_tile {
+	width:160px;
+	height:300px;
+	float:left;
+	margin-right:1.000em;
+	margin-bottom:2.000em;
+}
+#content a {
+	text-decoration:none;
+}
+#content a:link:after, #content a:visited:after {
+	content:"(" attr(href) ") ";
+	font-size:90%;
+}
+#content a[href ^="/"]:after {
+content:"(http://sydney.edu.au" attr(href) ") ";
+}
+#content .right {
+	text-align:right;
+}
+#content .fltright {
+	float:right;
+}
+#content .left {
+	text-align:left;
+}
+#content .fltleft {
+	float:left;
+}
+#content .image-gallery a:after, #content .video_tile a:after, #content .teaser-list a:after {
+	content:"";
+}
+ul, ol {
+	padding-left:1.250em;
+	margin:0;
+}
+ul li {
+	list-style-image:url(../images/common/list-item-dash-print.gif);
+}
+ol {
+	padding-left:2.5em;
+}
+#foot {
+	margin:3.000em 0 0 0;
+	padding-top:1.000em;
+	font-size:80%;
+}
+#foot #legal {
+	width:100%;
+}
+.skip-nav, #utilities, #nav-global, #quicklinks, #search, #tabs, div#tabbar, #menu, #foot #sitemap, #foot-links, #head #tray, #head h1 #separator, #spotlight-controls, .bt {
+	display:none;
+}

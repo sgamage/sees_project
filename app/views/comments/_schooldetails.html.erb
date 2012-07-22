@@ -1,0 +1,28 @@
+
+  <fieldset><legend>School Details</legend>
+    <div ><ol>
+        <li>
+          <label class="long">Principal name:</label>
+          <label class="field"><%= school.principal_title %> <%= school.principal_firstname %> <%= school.principal_surname %></label>         
+        </li>
+        <li>
+          <label class="long">School name:</label>
+          <label class="field"><%= school.name %></label>
+        </li>
+        <li>
+          <label class="long">Principal email name:</label>
+          <label class="field"><%= school.email %></label>
+        </li>   
+        <li>
+          <label class="long">School Address:</label>
+          <span class="field"> <%= school.address %>,<br/><%= school.suburb %>,<br/><%= school.state %>,<br/><%= school.postcode %>.</span>
+        </li>
+        <li>
+          <label class="long">School Phone Number:</label>
+          <label class="field"><%= school.phone %></label>
+        </li>
+      </ol>
+
+    </div>
+    <div class="clr"></div>
+  </fieldset>

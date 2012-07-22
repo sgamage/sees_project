@@ -1,0 +1,29 @@
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "formbuilder"}) do |f| %>
+  <div class="login_wrapper">
+    <div class="fltleft column">
+      <h1>The Sydney Early Offer Year 12 (E12)</h1>
+      <p>The University of Sydney’s Social Inclusion Unit wishes to expand its special entry schemes and launch an early conditional offer scheme for student from low SES schools. This scheme would offer approximately 180 places to students who do not meet normal entry requirements through UAC .</p>
+      <%= submit_tag 'Start New Application', :type => 'button', :onClick => 'location.href="/students/new"', :class => 'login-set-align submit-button button' %>	
+    </div>
+    <div class="fltleft">
+    	<fieldset><legend>Edit Current Application</legend>
+    	<ol>
+    		<li>
+    			<label>Email <em>*</em></label>
+    			<%= f.email_field :email %>
+    		</li>
+    		<li>
+    			<label>Password <em>*</em></label>
+    			<%= f.password_field :password %>
+    		</li>
+    		<li class="buttons">
+    			<%= link_to "Forgot Password?", new_password_path(resource_name), :class => "login-set-align" %>
+    			<%= f.submit "Login", :class => "login-set-align submit-button button" %>
+    		</li>
+    	</ol>
+    	</fieldset>
+    </div>
+    <div class="clr"></div>
+  </div>
+<div class="clr"></div>    
+<% end %>

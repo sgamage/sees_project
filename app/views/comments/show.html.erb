@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Student:</b>
+  <%= @comment.student_id %>
+</p>
+
+<p>
+  <b>Comment text:</b>
+  <%= @comment.comment_text %>
+</p>
+
+<div class=" form-buttons buttons">
+<%= link_to 'Edit', :class => "submit-button button", edit_comment_path(@comment) %> |
+<%= link_to 'Back', :class => "submit-button button", comments_path %></div>

@@ -1,0 +1,106 @@
+hr {
+	margin-top:0;
+}
+ul {
+	margin-bottom:.5em;
+}
+#head {
+	z-index:20;
+}
+#head #tray {
+	padding-bottom:1.5em;
+}
+#head #quicklinks {
+	width:18em;
+}
+form input.field {
+	font-size:1.1em;
+	height:1.5em;
+}
+form select {
+	font-size:1.1em;
+	height:1.7em;
+}
+form input.button {
+	margin-bottom:1px;
+}
+#sidenav.withsplash {
+	margin-top:2em;
+}
+#sidebar dl.teaser dd ul {
+	padding-bottom:1em;
+}
+#content .news-item h2 {
+	font-size:1.7em;
+}
+#content form.boxed {
+	width:31em;
+}
+ul#tabs ul li a, ul#tabs li.active ul li a {
+	width:94.9%;
+	padding:4px 2.5%;
+}
+div#tabbar form#quicklinks {
+	right:20em;
+}
+#content div.panel h2 {
+	height:25px;
+}
+form#advancedsearch input#searchkeywords {
+	padding-top:3px;
+}
+#content div.imginfo {
+	height:22em;
+}
+.hidn {
+	display:block;
+	width:1px;
+	float:left;
+}
+div#tabbar {
+	margin-bottom:0;
+	margin-top:0;
+	padding:0;
+}
+.clearfix {
+	zoom:1;
+}
+#menu ul li span.expander {
+	margin-top:-20px;
+}
+#foot #legal #foot-links {
+	margin-top:.7em;
+}
+#foot #go8-logo {
+	font-size:1em;
+	margin-top:.6em;
+	right:2.4em;
+	width:15.7em;
+	height:2.4em;
+	background-position:right;
+}
+#content form.formbuilder fieldset {
+	top:1em;
+	position:relative;
+	margin:2em 0;
+}
+#content form.formbuilder legend {
+	position:relative;
+	top:-0.8em;
+	left:-0.65em;
+	margin-bottom:-1em;
+}
+#content form.formbuilder fieldset fieldset {
+	top:auto;
+}
+#content form.formbuilder fieldset fieldset legend {
+	top:auto;
+	margin-bottom:0;
+}
+#cws-sitemap dd ul li {
+	margin:0;
+	line-height:130%;
+}
+#head #tray #cws-sitemap dd li {
+	padding:0 0 0 .7em;
+}

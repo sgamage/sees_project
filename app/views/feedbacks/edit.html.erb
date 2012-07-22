@@ -1,0 +1,29 @@
+<h1>Principal's Supporting Application for  <%= @feedback.student.full_name.upcase %></h1>
+<%= form_for(@feedback, :html =>{:class => "formbuilder", :onsubmit => "disableButtons();"}) do |f| %>
+
+  <%= render :partial => 'questions'%>
+  <%= f.hidden_field :answers %>
+  <%= f.hidden_field :id %>
+
+  <fieldset><legend>Other Information</legend>
+    <div ><ol>
+
+        <li>
+          <label class="long">Is there any other information you would like to add in support of the student?</label>
+          <%= f.text_area :extra_note, :class => 'small' %>
+        </li>
+      </ol>
+
+    </div>
+    <div class="clr"></div>
+  </fieldset>
+  <div>
+    <%= f.check_box :read_confirmation %>I have read the student's application and i can <br/>
+    <label></label><%= f.radio_button :recommandation_level, "recommand" %> Highly Recommend<br/>
+    <label></label><%= f.radio_button :recommandation_level, "highly_recommand" %> Recommend
+  </div>
+    <div class="buttons">
+      <input type="button" value="Submit", class="submit-button button", id="save">
+      <%= link_to "back", root_path, :class => 'submit-button button' %>
+    </div>
+<% end %>

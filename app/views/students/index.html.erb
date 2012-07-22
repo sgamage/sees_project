@@ -1,0 +1,77 @@
+<h1>Listing students</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Date of birth</th>
+    <th>Parent name</th>
+    <th>Parent phone</th>
+    <th>Parent mobile</th>
+    <th>Uac number</th>
+    <th>Email</th>
+    <th>Confirm email</th>
+    <th>Mobile</th>
+    <th>Phone</th>
+    <th>Address1</th>
+    <th>Address2</th>
+    <th>Suburb</th>
+    <th>State</th>
+    <th>Post code</th>
+    <th>School</th>
+    <th>Faculty</th>
+    <th>Course</th>
+    <th>Note1</th>
+    <th>Note2</th>
+    <th>Note3</th>
+    <th>Declaration1</th>
+    <th>Declaration2</th>
+    <th>Declaration3</th>
+    <th>Declaration4</th>
+    <th>Completed</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @students.each do |student| %>
+  <tr>
+    <td><%= student.title %></td>
+    <td><%= student.first_name %></td>
+    <td><%= student.last_name %></td>
+    <td><%= student.date_of_birth %></td>
+    <td><%= student.parent_name %></td>
+    <td><%= student.parent_phone %></td>
+    <td><%= student.parent_mobile %></td>
+    <td><%= student.uac_number %></td>
+    <td><%= student.email %></td>
+    <td><%= student.confirm_email %></td>
+    <td><%= student.mobile %></td>
+    <td><%= student.phone %></td>
+    <td><%= student.address1 %></td>
+    <td><%= student.address2 %></td>
+    <td><%= student.suburb %></td>
+    <td><%= student.state_id %></td>
+    <td><%= student.post_code %></td>
+    <td><%= student.school_id %></td>
+    <td><%= student.faculty %></td>
+    <td><%= student.course %></td>
+    <td><%= student.note1 %></td>
+    <td><%= student.note2 %></td>
+    <td><%= student.note3 %></td>
+    <td><%= student.declaration1 %></td>
+    <td><%= student.declaration2 %></td>
+    <td><%= student.declaration3 %></td>
+    <td><%= student.declaration4 %></td>
+    <td><%= student.completed %></td>
+    <td><%= link_to 'Show', student %></td>
+    <td><%= link_to 'Edit', edit_student_path(student) %></td>
+    <td><%= link_to 'Destroy', student, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Student', new_student_path, :class => "submit-button button"    %>

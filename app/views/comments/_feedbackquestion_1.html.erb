@@ -1,0 +1,23 @@
+<% categories = category_list %>
+<table>
+	<% categories.each do |category| %>
+	  <tr>
+	  	<td>
+	  		<%= category.category_name %>
+	  		<% questions = questions_for_category(category.id) %>
+	  		<table>
+	  			<% questions.each do |question| %>
+	  			<tr>
+	  				<td>
+	  					<%= question.question_text %>
+	  					<% answer_list.each do |answer| %>
+	  					  <%#= radio_button_tag question.id, answer.id%><%= answer.answer_text%>
+	  					<% end %>
+	  				</td>
+	  			</tr>
+	  			<% end %>
+	  		</table>
+	  	</td>
+	  </tr>
+	<% end %>
+</table>.

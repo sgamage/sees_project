@@ -1,0 +1,25 @@
+<h1>Listing student_files</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Student</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @student_files.each do |student_file| %>
+  <tr>
+    <td><%= student_file.name %></td>
+    <td><%= student_file.student_id %></td>
+    <td><%= link_to 'Show', student_file %></td>
+    <td><%= link_to 'Edit', edit_student_file_path(student_file) %></td>
+    <td><%= link_to 'Destroy', student_file, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Student file', new_student_file_path %>

@@ -1,0 +1,143 @@
+div#w3 {
+	width:auto;
+}
+div#head {
+	width:auto;
+	height:12.1em;
+}
+#head #utilities {
+	height:3.3em;
+	bottom:0;
+}
+#head #tray #extras {
+	left:77em;
+	width:17em;
+}
+#head #tray #cws-sitemap {
+	width:76em;
+}
+#head #tray #cws-sitemap li {
+	margin-left:1em;
+}
+#head ul#nav-global {
+	right:-1px;
+	padding-left:0;
+	bottom:-1px;
+	position:absolute;
+}
+#head ul#nav-home a span {
+	height:1.3em;
+}
+ul#tabs li {
+	width:1%;
+}
+#tabs li:hover span a {
+	height:1.900em;
+}
+#tabs li span a:hover {
+	height:1.900em;
+}
+#tabs li.active span a:hover {
+	height:1.727em;
+}
+#menu.withouttabs, #sidebar.withouttabs {
+	margin-top:0;
+}
+#content h1 {
+	margin:0;
+}
+body.splash #content h1 {
+	margin:1.579em 0 0 0;
+}
+body.splash #content h1.first {
+	margin:0;
+}
+#content ul#events li {
+	border-bottom:1px dashed #d6d6d6;
+	list-style-image:none;
+	margin:0;
+}
+#content ul#events li ul li {
+	border-bottom:none;
+	list-style:url(../images/common/list-item-grey_caret.gif);
+	margin-left:18px;
+}
+#content ul.news li {
+	height:1%;
+}
+#sidebar {
+	margin:1em .5em 1em .3em;
+}
+#sidebar a.banner {
+	position:relative;
+}
+#sidebar dl.noborder, #sidebar dl.noborder dd, #sidebar dl.noborder dt {
+	background-image:none;
+	border:none;
+	background:none;
+}
+#sidebar a.graphic-teaser {
+	color:white!important;
+	font-size:0!important;
+}
+ul li {
+	list-style:disc outside;
+}
+#content div.panel {
+	height:2em;
+}
+#content div.panel div.crnr.botl {
+	left:-1px;
+	bottom:-2px;
+}
+#content div.panel div.crnr.botr {
+	right:-1px;
+	bottom:-2px;
+}
+#content div.panel .panelbody ul.column li {
+	zoom:1;
+}
+#content div.panel .panelbody ul.column {
+	zoom:1;
+}
+#content ol.column li {
+	margin-left:0;
+	padding-left:30px;
+	list-style-position:inside;
+}
+#content.nofeature {
+	margin-right:0;
+}
+#menu {
+	margin:0 .9em;
+}
+#menu ul li ul li {
+	padding-bottom:1px;
+}
+#foot {
+	margin-top:1em;
+}
+#foot.go8 #legal {
+	font-size:1.1em;
+}
+#splashpod {
+	width:73.3em;
+}
+#sidebar a.featured-link {
+	height:2.917em;
+}
+#elementlabel {
+	width:15em;
+}
+#cws-sitemap dd ul li {
+	line-height:120%;
+}
+#search #search-scope-button input {
+	margin:-1px 0 -1px 0;
+}
+#search #search-scope-select {
+	width:21px;
+}
+#content ul.teaser-list li {
+	width:46%;
+}

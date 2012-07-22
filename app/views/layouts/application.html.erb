@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Homes: <%= controller.action_name %></title>
+          <%= stylesheet_link_tag 'screen.css' %>
+          <!--[if IE]><%= stylesheet_link_tag 'screen-ie.css' %><![endif]-->
+          <!--[if IE 6]><%= stylesheet_link_tag 'screen-ie6.css' %><![endif]-->
+          <%= stylesheet_link_tag 'screen-local.css' %>
+  </head>
+  <body class="splash" id="home">
+  	<div id="w1">
+      <div id="w2">
+        <div id="w3">
+          <div id="head">
+            <div id="masthead">
+              <a href="#content" class="skip-nav">Skip to main content</a>
+              <h1><a id="logo" href="http://sydney.edu.au/">The University of Sydney</a> <span id="separator">-</span> <span id="tag-line">Sydney Early Entry (E12) Scheme</span></h1>
+            </div>
+             <div class="prs_logout"> <%if user_signed_in? %>
+              		<%= button_to 'Sign out', destroy_user_session_path, :method => :delete %>
+            	<% end %>
+             </div>
+           
+            <!-- <ul id="nav-global">
+              use the "active" class to define the currently active item (highlighted text and nav indicator) 
+              <li class="active"><a href="#">Student Registration</a></li>
+            </ul>-->
+            <!-- end global nav -->
+          </div>
+          <div id="mid" class="clearfix">
+            <div id="content">
+              <%- flash.each do |name, msg| -%>
+                <% unless name.to_s == "notice" %>
+                	<%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+                <% end %>	
+		      <%- end -%>	
+              <div id="w4">
+                <%= yield %>
+              </div>
+            </div>
+            <!-- end content -->
+          </div>
+          <!-- start footer -->
+          <div id="foot" class="clearfix no-sitemap">
+            <div id="legal">
+              <p>&copy; 2002-09 The University of Sydney. <strong>Last&nbsp;updated:</strong>&nbsp;09 November 2009</p>
+              <p><strong>ABN:</strong>&nbsp;15&nbsp;211&nbsp;513&nbsp;464. <strong>CRICOS number:</strong>&nbsp;00026A. <strong>Phone:</strong>&nbsp;+61&nbsp;2&nbsp;9351&nbsp;2222. </p>
+              <p><strong>Authorised&nbsp;by:</strong>&nbsp;Director, Unit title. </p>
+              <p id="foot-links"><a href="http://sydney.edu.au/contact.shtml">Contact the University</a> | <a href="http://sydney.edu.au/disclaimer.shtml">Disclaimer</a> | <a href="http://sydney.edu.au/privacy.shtml">Privacy</a> | <a href="http://sydney.edu.au/accessibility.shtml">Accessibility</a></p>
+            </div>
+          </div> 
+          </div>
+          
+          <!-- end mid -->
+          
+        </div>
+      </div>
+	<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"%>
+	<%= javascript_include_tag "application.js"%>
+	
+  </body>
+</html>

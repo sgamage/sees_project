@@ -1,0 +1,19 @@
+<% categories = category_list %>
+<% categories.each do |category| %>
+<fieldset>
+      <legend><%= category.category_name %></legend>
+  		<div ><ol>
+  		<% questions = questions_for_category(category.id) %>
+  			<%  count = 0 
+  				questions.each do |question| %>
+                    <li>
+  					<label class="long"><%= question.question_text %>:</label>
+  					<% answer_list.each do |answer| %>
+  					  <%= radio_button_tag question.id, answer.id, false, :class => "radio_select"%><%= answer.answer_text%>
+  					<% end %>
+  					<%= hidden_field question.id, 'answer', :class => "answer" %>
+                   </li>
+  			<% end %>
+                      </ol></div>
+  		</fieldset>
+<% end %>

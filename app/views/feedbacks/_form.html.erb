@@ -1,0 +1,34 @@
+<%= form_for(@feedback, :html =>{:class => "formbuilder"}) do |f| %>
+  <% if @feedback.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% @feedback.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :student_id %><br />
+    <%= f.text_field :student_id %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.text_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :school_id %><br />
+    <%= f.text_field :school_id %>
+  </div>
+  <div>
+  	<%= render :partial => 'questions'%>
+  </div>
+  <div class="field">
+    <%= f.label :answers %><br />
+    <%= f.text_field :answers %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
