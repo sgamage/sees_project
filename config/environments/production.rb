@@ -51,7 +51,7 @@ SeesProject::Application.configure do
   config.action_mailer.perform_deliveries = true
   ActionMailer::Base.smtp_settings = {
                     :address        => "mail.alliontechnologies.railsplayground.net",
-                    :port           => 24,
+                    :port           => 25,
                     :authentication => 'plain',
                     :user_name      => "mailtester@alliontechnologies.railsplayground.net",
                     :password       => "welcome",
