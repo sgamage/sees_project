@@ -15,6 +15,7 @@ class Student < ActiveRecord::Base
   validates :email_confirmation, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i}, :allow_blank => Proc.new { |a| a.email.blank?} 
   validates_confirmation_of :email
   validates :school, :presence => true
+  validates :uac_number, :uniqueness => true
   
   validates :parent_phone, :length => { :within => 1..10 }, :allow_blank => true
   validates :parent_mobile, :length => { :within => 1..10 }, :allow_blank => true
@@ -66,7 +67,7 @@ class Student < ActiveRecord::Base
   
   def sec_school
      if school.try(:category) && school.try(:category) != "EAS" 
-       errors.add(:base, "Accept EAS") if sec_school_accept == "0"
+       errors.add(:base, "Please confirm your willingess to submit a EAS application form") if sec_school_accept == "0"
      end
   end
   
@@ -80,7 +81,7 @@ class Student < ActiveRecord::Base
   end
   
   def vaidate_required_field?
-   !((title.blank?) || (first_name.blank?) || (last_name.blank?) || (date_of_birth.blank?) || (email.blank?) || (parent_name.blank?) || (suburb.blank?))
+   !((title.blank?) || (first_name.blank?) || (last_name.blank?) || (date_of_birth.blank?) || (email.blank?) || (parent_name.blank?) || (suburb.blank?) || (uac_number.blank?))
   end
   
   def complete

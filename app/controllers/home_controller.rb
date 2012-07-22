@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
-  before_filter :handle_student_login
+  before_filter :authenticate_user!, :except => [:login]
+  before_filter :handle_student_login, :except => [:login]
   
   def index
     @students = Student.submitted_applications
@@ -17,5 +18,10 @@ class HomeController < ApplicationController
       end
     end
   end
+  
+  def login
+    redirect_to new_user_session_path
+  end
+  
   
 end

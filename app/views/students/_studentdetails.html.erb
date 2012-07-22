@@ -77,7 +77,18 @@
       <br><span class="field"><%= student.note3 %></span>
     </p>
   </fieldset>
-  <%= render :partial => 'attachment_details', :locals => {:student => student} %>
+  <%#= render :partial => 'attachment_details', :locals => {:student => student} %>
+  <fieldset>
+	    <legend>Attachment details</legend>
+	    <div>
+	      <% student.student_files.each do |attachment| %>
+	      	<p>
+	         <label><%= attachment.display_name %></label>
+	         <a href="/data/<%= attachment.name %>"><%= attachment.name %></a>
+	        </p>
+	      <% end %>
+	    </div>
+	</fieldset>
 </form>
 
 <div style="display:none;">

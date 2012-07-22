@@ -44,7 +44,7 @@
           <%= f.text_field :parent_mobile %>
         </li>
         <li>
-          <label>UAC applicant number </label>
+          <label>UAC applicant number <em>*</em></label>
           <%= f.text_field :uac_number %>
         </li>
       </ol>
@@ -188,9 +188,11 @@
   <p><span class="info-tip">if your application is complete, please submit now. Once your application has been submitted you are not able to make any changes or resubmit. <br/>
 If you cannot complete the application at this time you can save it and log back in at a later date.</span></p>
   <div class="buttons">
+    <%= link_to "Back", root_path, :class => "submit-button button" %>
     <%= f.submit "Save", :class => "submit-button button" %>
-    <%= f.submit "Submit", :class => "submit-button button", :id => "final_submit" %></div>
-    <%= hidden_field_tag 'final_submit_flag' %>
+	<%= f.submit "Submit", :class => "submit-button button", :id => "final_submit" %>
+	</div>
+	<%= hidden_field_tag 'final_submit_flag' %>	
 <% end %>
 <div id="dialog-confirm" title="Application submit">
 	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>You will not be able to update this application once submitted , are you sure you want to submit?</p>

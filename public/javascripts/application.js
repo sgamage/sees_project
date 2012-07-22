@@ -65,11 +65,7 @@ $(document).ready(function() {
 	$("#student_school_id").change(function() {
     	  var str = "";
 	      $("#student_school_id option:selected").each(function () {
-	      	    str += $(this).text();
-	            start = str.indexOf("(")
-	            end   = str.indexOf(")")
-	            category = str.substr(start, end)
-	            show_messages(category);
+	      	    show_messages($(this).text());
 	            
 	   	  });
 	});
@@ -113,9 +109,11 @@ $(document).ready(function() {
 	
 })
 
-function show_messages(category){
-	
-	if (category != "Please select"){
+function show_messages(str){
+	start = str.indexOf("(")
+	end   = str.indexOf(")")
+	category = str.substr(start, end)
+	if (category != ""){
     	if (category == "(EAS)"){
 			$("#eas_yes").show('slow');
         	$("#eas_no").hide('slow');

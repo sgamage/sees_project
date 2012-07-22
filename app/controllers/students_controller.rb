@@ -28,8 +28,8 @@ class StudentsController < ApplicationController
   # POST /students
   # POST /students.json
   def create
-    #if verify_recaptcha
-      @student = Student.new(params[:student])
+    @student = Student.new(params[:student])
+    if verify_recaptcha
       @student.validate_submit = params["final_submit_flag"] 
       if @student.save
         Student.number_of_files.to_i.times do |i|
@@ -49,9 +49,11 @@ class StudentsController < ApplicationController
       else
         render :action => "new" 
       end
-    #else
-    #  redirect_to new_student_path, :alert => 'Invalid captcha' 
-    #end  
+    else
+      @student.errors.add(:base, "Captcha verification faild")
+      render :action => "new" 
+      #redirect_to new_student_path, :message => "abc" 
+    end  
   end
 
   # PUT /students/1
