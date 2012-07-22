@@ -1,11 +1,23 @@
 <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put, :class => "formbuilder" }) do |f| %>
   <form class="formbuilder"><div class="login-sub">
       <fieldset><legend>Change Password</legend>
+        <% unless devise_error_messages!.empty? %>
+      	 <div class="form-error" id="error_explanation">
+		  <ul>
+		  	<% messages = devise_error_messages! %>
+		  	<% messages.each do |msg| %>
+		  	 <li><%= msg %></li>
+		  	<% end %>
+	      </ul>
+	     </div>
+	    <% end %>
+        <%= f.hidden_field :reset_password_token %>
         <ol>
-          <li> <%= devise_error_messages! %><%= f.hidden_field :reset_password_token %></li>
           <li>
             <label>Email: </label>
-            <span class="field">princ@gmail.com</span>
+            <span class="field">
+            	<%= @user.email %>
+            </span>
           </li>
           <li>
             <label>New password: <em>*</em></label>

@@ -5,16 +5,26 @@ class Student < ActiveRecord::Base
                   :parent_mobile, :parent_name, :parent_phone, :phone, :post_code, :school_id, :state_id, 
                   :suburb, :title, :uac_number, :user_id
   
-  attr_accessible :login_email, :password, :password_confirmation, :email_confirmation
-  attr_accessor :login_email, :password, :password_confirmation, :email_confirmation
+  attr_accessible :login_email, :password, :password_confirmation, :email_confirmation, :sec_school_accept
+  attr_accessor :login_email, :password, :password_confirmation, :email_confirmation, :sec_school_accept
                   
   belongs_to :user
   validates_associated :user   
   
-  #validates :email, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i}, :allow_blank => true
-  #validates :email_confirmation, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i}, :allow_blank => Proc.new { |a| a.email.blank?} 
-  #validates_confirmation_of :email
+  validates :email, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i}, :allow_blank => true
+  validates :email_confirmation, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i}, :allow_blank => Proc.new { |a| a.email.blank?} 
+  validates_confirmation_of :email
   validates :school, :presence => true
+  
+  validates :parent_phone, :length => { :within => 1..10 }, :allow_blank => true
+  validates :parent_mobile, :length => { :within => 1..10 }, :allow_blank => true
+  validates :mobile, :length => { :within => 1..10 }, :allow_blank => true
+  validates :phone, :length => { :within => 1..10 }, :allow_blank => true
+  validates :post_code, :length => { :within => 1..4 }, :allow_blank => true
+  
+  validates :note1, :length => { :within => 1..250 }, :allow_blank => true
+  validates :note2, :length => { :within => 1..250 }, :allow_blank => true
+  validates :note3, :length => { :within => 1..250 }, :allow_blank => true
   
   
   belongs_to :state
@@ -24,7 +34,7 @@ class Student < ActiveRecord::Base
   
                
 
-  validate :new_user_login
+  validate :new_user_login, :sec_school
   
   before_create :update_user
   
@@ -44,6 +54,12 @@ class Student < ActiveRecord::Base
         errors.add(:base, msg)  
       end
     end
+  end
+  
+  def sec_school
+     if school.category != "EAS"
+       errors.add(:base, "Accept EAS") if sec_school_accept == "0"
+     end
   end
   
   def update_user

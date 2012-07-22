@@ -131,7 +131,7 @@
     <!-- when the school is NOT a esa identified schhol -->
     <div id="eas_no"><p >
         <span class="info-tip">Your school is not an identified L-SES school you will need to complete an <a href="http://www.uac.edu.au/undergraduate/eas/" target="_blank">Educational Access Scheme</a> (EAS) to demonstrate financial hardship to be eligible for the E12 scheme.</span></p>
-      	<p><%= check_box_tag(:pet_dog) %>   I understand my application will not be considered unless I lodge an EAS application form. UAC will provide the University with information regarding the status of my EAS application.</p></div>
+      	<p><%= f.check_box(:sec_school_accept) %>   I understand my application will not be considered unless I lodge an EAS application form. UAC will provide the University with information regarding the status of my EAS application.</p></div>
     <p>
       <%= f.label :name, "Course" %>
       <%= f.collection_select :course_id, Course.all, :id, :name %>

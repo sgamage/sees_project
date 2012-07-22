@@ -69,21 +69,40 @@ $(document).ready(function() {
 	            start = str.indexOf("(")
 	            end   = str.indexOf(")")
 	            category = str.substr(start, end)
-	            if (category != ""){
-	            	if (category == "(EAS)"){
-	   					$("#eas_yes").show('slow');
-	                	$("#eas_no").hide('slow');
-		   			}	
-		   			else{
-		   				$("#eas_yes").hide('slow');
-		                $("#eas_no").show('slow');
-		   			}	
-	            }
-	            else{
-	            	$("#eas_yes").hide('slow');
-		            $("#eas_no").hide('slow');
-	            }
+	            show_messages(category);
 	            
 	   	  });
 	});
+	
+    category = $("#student_school_id option:selected").text()
+    show_messages(category);
+	
+	$("#student_login_email").val('');
+	$("#student_login_email").attr('readonly', true);
+	
+	$("#student_email").focusout(function() {
+		name = $(this).val();
+		$("#student_login_email").val(name);
+	});
+	//handling page validation load
+	$("#student_login_email").val($("#student_email").val());
+	
 })
+
+function show_messages(category){
+	
+	if (category != "Please select"){
+    	if (category == "(EAS)"){
+			$("#eas_yes").show('slow');
+        	$("#eas_no").hide('slow');
+		}	
+		else{
+			$("#eas_yes").hide('slow');
+            $("#eas_no").show('slow');
+		}	
+    }
+    else{
+    	$("#eas_yes").hide('slow');
+        $("#eas_no").hide('slow');
+    }
+}
