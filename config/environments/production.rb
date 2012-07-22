@@ -49,12 +49,12 @@ SeesProject::Application.configure do
   config.action_mailer.default_url_options = { :host => 'http://alliontechnologies.railsplayground.net' }
   config.action_mailer.default :charset => "utf-8"
   config.action_mailer.perform_deliveries = true
+  ActionMailer::Base.smtp_settings[:enable_starttls_auto] = false
   ActionMailer::Base.smtp_settings = {
                     :address        => "mail.alliontechnologies.railsplayground.net",
                     :port           => 25,
                     :authentication => 'plain',
                     :user_name      => "mailtester@alliontechnologies.railsplayground.net",
-                    :password       => "welcome",
-                    :enable_starttls_auto => true
+                    :password       => "welcome"
   }
 end
