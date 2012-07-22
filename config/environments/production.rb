@@ -52,7 +52,7 @@ SeesProject::Application.configure do
   ActionMailer::Base.smtp_settings = {
                     :address        => "smtp.gmail.com",
                     :port           => 587,
-                    :authentication => :plain,
+                    :authentication => 'plain',
                     :user_name      => "smtpsamplemailsender@gmail.com",
                     :password       => "smtpsamplemailsender",
                     :enable_starttls_auto => true
