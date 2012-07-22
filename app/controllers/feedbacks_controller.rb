@@ -22,9 +22,9 @@ class FeedbacksController < ApplicationController
   
   def update
     @feedback = Feedback.find(params[:id])
-    #@feedback.update_attributes(params[:feedback])
+    student = @feedback.student
     @feedback.update_attributes(:extra_note => params[:extra_note], :read_confirmation => params[:confirm], :answers => params[:answers])
-    #redirect_to root_path
+    student.principal_feedback
     render :json => @feedback, :status => :created, :location => @feedback
   end
   

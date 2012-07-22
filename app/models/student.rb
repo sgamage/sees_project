@@ -5,8 +5,8 @@ class Student < ActiveRecord::Base
                   :parent_mobile, :parent_name, :parent_phone, :phone, :post_code, :school_id, :state_id, 
                   :suburb, :title, :uac_number, :user_id
   
-  attr_accessible :login_email, :password, :password_confirmation, :email_confirmation, :sec_school_accept, :validate_submit
-  attr_accessor :login_email, :password, :password_confirmation, :email_confirmation, :sec_school_accept, :validate_submit
+  attr_accessible :login_email, :password, :password_confirmation, :email_confirmation, :sec_school_accept, :validate_submit, :attached_files
+  attr_accessor :login_email, :password, :password_confirmation, :email_confirmation, :sec_school_accept, :validate_submit, :attached_files
                   
   belongs_to :user
   validates_associated :user   
@@ -35,7 +35,7 @@ class Student < ActiveRecord::Base
   
                
 
-  validate :new_user_login, :sec_school, :submittion
+  validate :new_user_login, :sec_school, :submittion, :validate_attachments
   
   before_create :update_user
   
@@ -43,9 +43,15 @@ class Student < ActiveRecord::Base
   has_one :feedback
   has_one :student_status
   
+  
   scope :submitted_applications, lambda {
-    {:conditions => {:completed => true}}
+    {:conditions => {:application_status_id => 1}}
   }
+  
+  scope :for_my_school, lambda {|school_id|
+    {:conditions => {:school_id => school_id}}
+  }
+  
   
   def submittion
     if validate_submit == "1"
@@ -89,10 +95,17 @@ class Student < ActiveRecord::Base
     status = ApplicationStatus.find_by_status("Application Received")
     update_attribute("application_status_id", status.id)
     StudentNotification.notification_email(self).deliver
+    StudentNotification.principal_notification(self).deliver
+  end
+  
+  def principal_feedback
+    status = ApplicationStatus.find_by_status("Principal Application Received")
+    update_attribute("application_status_id", status.id)
+    StudentNotification.principal_feedback(self).deliver
   end
   
   def full_name
-    "#{last_name} #{first_name}"
+    "#{first_name} #{last_name}"
   end
   
   def self.logged_in_student(user_id)
@@ -100,7 +113,26 @@ class Student < ActiveRecord::Base
   end
   
   def feedback?
-    !self.feedback.nil?
+    #!self.feedback.nil?
+    self.application_status_id = 1
+  end
+  
+  def validate_attachments
+    if attached_files
+      attached_files.each do |f|
+        file = f[1]
+        errors.add(:base, "#{file.original_filename} is exceeding 2MB file size") if exceed_max_file_size?(file)
+        errors.add(:base, "#{file.original_filename} is not a PDF file") unless validate_pdf(file.original_filename)
+      end
+    end
+  end
+  
+  def exceed_max_file_size?(file)
+    file.size > 2000000 #2MB
+  end
+  
+  def validate_pdf(file_name)
+    file_name.split(".").last == "pdf"
   end
   
 end

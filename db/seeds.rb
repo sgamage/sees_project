@@ -2,8 +2,10 @@
 p "running seed .........."
 user_password = 'welcome'
 User.create(:email => 'student@example.com', :password => user_password, :password_confirmation => user_password)
-User.create(:email => 'principal@example.com', :password => user_password, :password_confirmation => user_password, :user_type => 'PRINCIPAL')
+User.create(:email => 'easprincipal@example.com', :password => user_password, :password_confirmation => user_password, :user_type => 'PRINCIPAL')
+User.create(:email => 'noneasprincipal@example.com', :password => user_password, :password_confirmation => user_password, :user_type => 'PRINCIPAL')
 User.create(:email => 'admin@example.com', :password => user_password, :password_confirmation => user_password, :user_type => 'ADMIN')
+
  
 #creating states
 State.create(:name => 'WA')
@@ -98,6 +100,8 @@ Course.create(:name => 'MRS-Diagnostic Radiography', :faculty_id => Faculty.find
 Course.create(:name => 'Exercise Physiology', :faculty_id => Faculty.find_by_name('Health Sciences').id)
 Course.create(:name => 'Exercise and Sport Science', :faculty_id => Faculty.find_by_name('Health Sciences').id)
 
-
+ApplicationSupportStatus.create(:status => "From my knoledge this student doesnot meet the E12 L-SEC eligibility criteria")
+ApplicationSupportStatus.create(:status => "I believe it is unlikely the student will meet the E12 course criteria")
+ApplicationSupportStatus.create(:status => "Does not attend this school")
 
 

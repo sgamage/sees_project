@@ -33,8 +33,9 @@
             <div id="content">
               <%- flash.each do |name, msg| -%>
                 <% unless name.to_s == "notice" %>
-                	<%= msg%>
-                	<%#= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+                	<%if request.referer != "/" %> 
+                		<%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+                	<% end %>
                 <% end %>	
 		      <%- end -%>	
               <div id="w4">

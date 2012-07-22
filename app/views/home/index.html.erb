@@ -39,15 +39,17 @@
       <% @students.each do |student|  %>
       <tr>
         <td><%= application_id(student.id) %></td>                
-        <td><%= link_to student.full_name, student_path(student) %></td>
+        <td><%= student.full_name %></td>
         <td><%= student.uac_number %></td>
         <td><%= format_date(student.created_at) %></td>
-        <td>Submitted</td>
+        <td>
+        	<%= applciation_status(student.application_status_id) %>
+        </td>
         <td>
           <% if current_user.admin?%>
             <%= link_to "view", comments_path(:id => student.id) %>
           <%end%>
-          <% if current_user.principal? && !student.feedback? %>
+          <% if current_user.principal? && student.feedback? %>
             <%= link_to "Feedback", new_feedback_path(:id => student.id) %>
           <%end%>
         </td>

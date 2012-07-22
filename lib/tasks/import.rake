@@ -14,7 +14,7 @@ task :load_csv => :environment do
   if user
     user
   else
-     user = User.new(:email => row[10], :password => '<password>', :password_confirmation => '<password>' )
+     user = User.new(:email => row[10], :password => 'welcome', :password_confirmation => 'welcome' )
      if user.valid?
        user.save
      end   
@@ -30,9 +30,9 @@ task :load_csv => :environment do
   school.phone = row[9]
   school.email = row[10]
   school.category = row[11] 
-   
-    if school.name.length > 0
-      school.save
-    end
+  school.user_id = user.id 
+  if school.name.length > 0
+    school.save
+  end
   end
 end
