@@ -86,6 +86,30 @@ $(document).ready(function() {
 	});
 	//handling page validation load
 	$("#student_login_email").val($("#student_email").val());
+	$("#dialog-confirm").hide('fast');
+	$("#final_submit").click(function (){
+		$("#dialog-confirm").show('fast');
+		$( "#dialog-confirm" ).dialog({
+		  resizable: false,
+		  height:140,
+		  modal: true,
+		  buttons: {
+			"Submit Form": function() {
+				$( this ).dialog( "close" );
+				$("#final_submit_flag").val("1");
+				$("#student_submit").click();
+				
+			},
+			Cancel: function() {
+				$( this ).dialog( "close" );
+				$("#dialog-confirm").hide('fast');
+				return false;
+			}
+			}
+		});
+		return false;
+		
+	});
 	
 })
 

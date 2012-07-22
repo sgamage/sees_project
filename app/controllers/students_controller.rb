@@ -30,18 +30,22 @@ class StudentsController < ApplicationController
   def create
     #if verify_recaptcha
       @student = Student.new(params[:student])
+      @student.validate_submit = params["final_submit_flag"] 
       if @student.save
         Student.number_of_files.to_i.times do |i|
           unless params["file"].nil? || params["file"]["#{i}"].nil?
             tmp = params["file"]["#{i}"]#.tempfile
             file_name = params["file"]["#{i}"].original_filename
-            file = File.join("public/data", "#{file_name}#{@student.id}")
-            StudentFile.create(:name => "#{file_name}#{@student.id}", :student_id => @student.id)
+            file = File.join("public/data", "#{@student.id}#{file_name}")
+            display_name = params["file_name"]["#{i}"]
+            StudentFile.create(:name => "#{file_name}#{@student.id}", :student_id => @student.id, :display_name => display_name)
             FileUtils.cp tmp.path, file
           end  
         end
         @student.complete if @student.vaidate_required_field?
-        redirect_to student_path(@student) 
+        flash[:application_sucessful] = 'Application sucessfully created'
+        #redirect_to new_student_path
+        redirect_to new_student_path, :notice => 'Application sucessfully created'  
       else
         render :action => "new" 
       end

@@ -29,7 +29,7 @@ SeesProject::Application.configure do
                     :port           => 587,
                     :authentication => :plain,
                     :user_name      => "sameera207@gmail.com",
-                    :password       => "jaguar#1"
+                    :password       => ""
   }
 end
 

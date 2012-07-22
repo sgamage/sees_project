@@ -5,8 +5,8 @@ class Student < ActiveRecord::Base
                   :parent_mobile, :parent_name, :parent_phone, :phone, :post_code, :school_id, :state_id, 
                   :suburb, :title, :uac_number, :user_id
   
-  attr_accessible :login_email, :password, :password_confirmation, :email_confirmation, :sec_school_accept
-  attr_accessor :login_email, :password, :password_confirmation, :email_confirmation, :sec_school_accept
+  attr_accessible :login_email, :password, :password_confirmation, :email_confirmation, :sec_school_accept, :validate_submit
+  attr_accessor :login_email, :password, :password_confirmation, :email_confirmation, :sec_school_accept, :validate_submit
                   
   belongs_to :user
   validates_associated :user   
@@ -34,7 +34,7 @@ class Student < ActiveRecord::Base
   
                
 
-  validate :new_user_login, :sec_school
+  validate :new_user_login, :sec_school, :submittion
   
   before_create :update_user
   
@@ -45,6 +45,14 @@ class Student < ActiveRecord::Base
   scope :submitted_applications, lambda {
     {:conditions => {:completed => true}}
   }
+  
+  def submittion
+    if validate_submit == "1"
+      unless vaidate_required_field?
+        errors.add(:base, "Please fill all the required fields in order to submit the application")
+      end  
+    end
+  end
   
   def new_user_login
     if self.new_record?
@@ -57,7 +65,7 @@ class Student < ActiveRecord::Base
   end
   
   def sec_school
-     if school.category != "EAS"
+     if school.try(:category) && school.try(:category) != "EAS" 
        errors.add(:base, "Accept EAS") if sec_school_accept == "0"
      end
   end
@@ -77,6 +85,9 @@ class Student < ActiveRecord::Base
   
   def complete
     update_attribute("completed", true)
+    status = ApplicationStatus.find_by_status("Application Received")
+    update_attribute("application_status_id", status.id)
+    StudentNotification.notification_email(self).deliver
   end
   
   def full_name

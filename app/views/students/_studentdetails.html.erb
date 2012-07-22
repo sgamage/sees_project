@@ -77,23 +77,7 @@
       <br><span class="field"><%= student.note3 %></span>
     </p>
   </fieldset>
-  <fieldset>
-    <legend>Attachment details</legend>
-    <div>
-      <p>
-        <label for="student_application_attachment1">Attachment 1 name</label>
-        <a href="#">1</a>
-      </p>
-      <p>
-        <label for="student_application_attachment2">Attachment 2 name</label>
-        <a href="#">1</a>
-      </p>
-      <p>
-        <label for="student_application_attachment3">Attachment 3 name</label>
-        <a href="#">1</a>
-      </p>
-    </div>
-  </fieldset>
+  <%= render :partial => 'attachment_details', :locals => {:student => student} %>
 </form>
 
 <div style="display:none;">

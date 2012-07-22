@@ -156,41 +156,16 @@
     <legend>Attachment details</legend>
     <div>Upload your supporting documents these may be a recent school report, award, certificate or reference from a teacher or employee.</div>
     <div><span class="info-tip">Only upload PDF documents and files no larger than 2MB.</span></div>
-    <div class="fltleft column">
-      <p>
-        <label for="student_application_attachment1">Attachment 1 name</label>
-        <input type="text" name="picture" id="picture">
-      </p>
-      <p>
-        <label for="student_application_attachment2">Attachment 2 name</label>
-        <input type="text" name="picture" id="picture">
-      </p>
-      <p>
-        <label for="student_application_attachment3">Attachment 3 name</label>
-        <input type="text" name="picture" id="picture">
-      </p>
-    </div>
-    <div class="fltleft column">
-      <% if @student.new_record? %>
-        <% Student.number_of_files.to_i.times do |i| %>
-          <p><label>Upload</label> <%= file_field "file", "#{i}" %></p>
-        <% end %>
-      <% else 
-        count = 0 
-      %>
-
-        <% @student.student_files.each do |file| %>
-          <p><%= link_to file.name, '' %></p>
-
-          <% 
-          count += 1
-        end 
-      %>
-        <% (Student.number_of_files.to_i - count).times do |i| %>
-          <p><label>Upload</label> <%= file_field "file", "#{i}" %></p>
-        <% end %>
-      <% end %>
-    </div>
+    <% if @student.new_record? %>
+       <% Student.number_of_files.to_i.times do |i| %>
+         <div class="fltleft column">
+		     <p><label>Attachment <%= i + 1 %> </label> <%= text_field "file_name", "#{i}" %></p> 
+		</div>
+		<div class="fltleft column">
+		   <p><label>Upload</label> <%= file_field "file", "#{i}" %></p>   
+		</div>
+       <%end%>
+    <%end%>    
   </fieldset>
 
   <div >
@@ -214,6 +189,9 @@
 If you cannot complete the application at this time you can save it and log back in at a later date.</span></p>
   <div class="buttons">
     <%= f.submit "Save", :class => "submit-button button" %>
-    <%= f.submit "Submit", :class => "submit-button button" %></div>
+    <%= f.submit "Submit", :class => "submit-button button", :id => "final_submit" %></div>
+    <%= hidden_field_tag 'final_submit_flag' %>
 <% end %>
-
+<div id="dialog-confirm" title="Application submit">
+	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>You will not be able to update this application once submitted , are you sure you want to submit?</p>
+</div>
