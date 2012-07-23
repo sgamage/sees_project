@@ -41,7 +41,12 @@
         <% if !empty_string?(student.address1) %>
         <li>
           <label>Address:</label>
-          <span class="field"><%= student.address1 %>,<br/> <%= student.address2 %><br/><%= student.suburb %><br/><%= student.try(:state).try(:name) %><br/><%= student.post_code %></span>
+          <lable class="field"><%= student.address1 %>,
+          	 <% if !empty_string?(student.address2) %>
+          	 <br/> <%= student.address2 %>
+          	 <% end %>
+          	 <br/>
+             <%= student.suburb %><br/><%= student.try(:state).try(:name) %><br/><%= student.post_code %></lable>
         </li>
         <%end%>
         <% if !empty_string?(student.email) %>

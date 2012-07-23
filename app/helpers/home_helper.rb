@@ -4,7 +4,9 @@ module HomeHelper
   end
   
   def applciation_status(id)
-    ApplicationStatus.find(id).try(:status)
+    if id
+     ApplicationStatus.find(id).try(:status)
+    end 
   end
   
 end
