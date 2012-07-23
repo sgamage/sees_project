@@ -1,4 +1,3 @@
-<h1>Principal's Supporting Application for  <%= @feedback.student.full_name.upcase %></h1>
 <%= form_for(@feedback, :html =>{:class => "formbuilder", :onsubmit => "disableButtons();"}) do |f| %>
   
   <%= render :partial => 'questions'%>
