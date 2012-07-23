@@ -50,7 +50,7 @@ class StudentsController < ApplicationController
         render :action => "new" 
       end
     else
-      @student.errors.add(:base, "Captcha verification faild")
+      @student.errors.add(:base, "Captcha verification failed")
       render :action => "new" 
     end  
   end
