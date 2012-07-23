@@ -35,7 +35,7 @@ SeesProject::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Disable delivery errors, bad email addresses will be ignored
-  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.raise_delivery_errors = false
 
   # Enable threaded mode
   # config.threadsafe!
@@ -54,7 +54,7 @@ SeesProject::Application.configure do
                     :address        => "mail.alliontechnologies.railsplayground.net",
                     :port           => 25,
                     :authentication => 'plain',
-                    :user_name      => "mailtester@alliontechnologies.railsplayground.net",
-                    :password       => "welcome"
+                    :user_name      => "",
+                    :password       => ""
   }
 end

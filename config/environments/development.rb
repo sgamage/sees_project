@@ -28,8 +28,8 @@ SeesProject::Application.configure do
                     :address        => "smtp.gmail.com",
                     :port           => 587,
                     :authentication => :plain,
-                    :user_name      => "sameera207@gmail.com",
-                    :password       => "jaguar#1"
+                    :user_name      => "",
+                    :password       => ""
   }
 end
 
