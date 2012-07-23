@@ -78,7 +78,7 @@ class Student < ActiveRecord::Base
   
   def sec_school
      if school.try(:category) && school.try(:category) != "EAS" 
-       errors.add(:base, "Please confirm your willingess to submit a EAS application form") if sec_school_accept == "0"
+       errors.add(:base, "Please confirm your willingness to submit a EAS application form") if sec_school_accept == "0"
      end
   end
   

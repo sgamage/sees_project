@@ -2457,6 +2457,6 @@ p.paging a.prev, p.paging span.prev {
     cursor: pointer;
 }
 .att-view {
-    border:none;
+    width:450px;
     color:red;
 }

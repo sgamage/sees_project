@@ -165,33 +165,35 @@
     <div>Upload your supporting documents these may be a recent school report, award, certificate or reference from a teacher or employee.</div>
     <div><span class="info-tip">Only upload PDF documents and files no larger than 2MB.</span></div>
     <% if @student.new_record? %>
-      <% Student.number_of_files.to_i.times do |i| %>
-        <div class="fltleft">
-          <p><label>Attachment <%= i + 1 %> </label> <%= text_field "file_name", "#{i}" %></p> 
-        </div>
-        <div class="fltleft">
-          <p><label>Upload</label> <%= file_field "file", "#{i}" %></p>   
-        </div>
-      <%end%>
+       <% Student.number_of_files.to_i.times do |i| %>
+         <div class="fltleft">
+		     <p><label>Attachment <%= i + 1 %> </label> <%= text_field "file_name", "#{i}" %></p> 
+		</div>
+		<div class="fltleft">
+		   <p><label>Upload</label> <%= file_field "file", "#{i}" %></p>   
+		</div>
+    <div class="clr"></div>
+       <%end%>
     <% else %>
-      <% i = 0 
-      @student.student_files.each do |file| %>
-        <div  >
-          <p ><label>Attachment <%= i + 1 %> </label> 
-            <label class="field"><%= file.display_name %>&nbsp;&nbsp;&nbsp;<%= link_to file.name, "/data/#{file.name}" %></label></p> 
-        </div>
-        <div class="clr"></div>
-        <% i += 1
-      end %>
-      <% remaning_files = Student.number_of_files.to_i - i
-      remaning_files.times do |i| %>
-        <div class="fltleft">
-          <p><label>Attachment <%= i + 1 %> </label> <%= text_field "file_name", "#{i}" %></p> 
-        </div>
-        <div class="fltleft">
-          <p><label>Upload</label> <%= file_field "file", "#{i}" %></p>   
-        </div>
-      <%end%>   
+       <% i = 0 
+         @student.student_files.each do |file| %>
+         <div  >
+		     <p ><label>Attachment <%= i + 1 %> </label> 
+                       <label class="field"><%= file.display_name %>&nbsp;&nbsp;&nbsp;<%= link_to file.name, "/data/#{file.name}" %></label></p> 
+		 </div>
+    <div class="clr"></div>
+       <% i += 1
+       end %>
+       <% remaning_files = Student.number_of_files.to_i - i
+          remaning_files.times do |i| %>
+         <div class="fltleft">
+		     <p><label>Attachment <%= i + 1 %> </label> <%= text_field "file_name", "#{i}" %></p> 
+		</div>
+		<div class="fltleft">
+		   <p><label>Upload</label> <%= file_field "file", "#{i}" %></p>   
+		</div>
+    <div class="clr"></div>
+       <%end%>   
     <%end%>    
   </fieldset>
 
