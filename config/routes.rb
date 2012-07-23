@@ -10,7 +10,7 @@ SeesProject::Application.routes.draw do
   end
 
   get "home/index"
-
+  get 'students/autocomplete_school_name'
   devise_for :users ,:controllers => { :registrations => "registrations" }
 
   # The priority is based upon order of creation:

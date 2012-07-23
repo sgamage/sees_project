@@ -1,11 +1,6 @@
-<% unless @student.vaidate_required_field? %>
-  <h1>Student Application
-    <%= @student.vaidate_required_field? %>	
-  </h1>
-<% end %>
+<h1>Student Application For <%= @student.full_name %></h1>
 <%= render :partial => 'studentdetails', :locals => {:student => @student} %>
 <div class="buttons  form-buttons">
 <%= (link_to 'Edit', edit_student_path(@student), :class => "submit-button button") unless @student.vaidate_required_field? %>
-  <%= (link_to "back", root_path, :class => "submit-button button") unless current_user.student?  %>
-  
+<%= (link_to "back", root_path, :class => "submit-button button") %>
 </div>

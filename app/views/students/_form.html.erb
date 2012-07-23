@@ -134,7 +134,7 @@
       	<p><%= f.check_box(:sec_school_accept) %>   I understand my application will not be considered unless I lodge an EAS application form. UAC will provide the University with information regarding the status of my EAS application.</p></div>
     <p>
       <%= f.label :name, "Course" %>
-      <%= f.collection_select :course_id, Course.all, :id, :name %>
+      <%= f.collection_select :course_id, Course.all, :id, :display_course_name %>
     </p>
 
     <p>1. Outline the co-curricular activities in which you have been involved in. These could be sports, cultural and or community activities, or school leadership roles. Choose one example and tell us why you chose to undertake that activity and what you learned or gained from it. <em>*</em>

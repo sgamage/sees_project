@@ -1,17 +1,12 @@
 require 'fileutils'
 class StudentsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:new, :create, :submit]
+  before_filter :authenticate_user!, :except => [:new, :create, :submit, :show, :autocomplete_school_name]
   before_filter :cannot_create_application_for_already_created, :only => [:new, :create]
-  
+  autocomplete :school, :name
   # GET /students/1
   # GET /students/1.json
   def show
     @student = Student.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render :json => @student }
-    end
   end
 
   # GET /students/new
@@ -29,9 +24,11 @@ class StudentsController < ApplicationController
   # POST /students.json
   def create
     @student = Student.new(params[:student])
-    if verify_recaptcha
+    #TODO: captcha removed for demo
+    #if verify_recaptcha
       @student.validate_submit = params["final_submit_flag"] 
       @student.attached_files = params["file"]
+      #debugger
       if @student.save
         Student.number_of_files.to_i.times do |i|
           unless params["file"].nil? || params["file"]["#{i}"].nil?
@@ -43,16 +40,19 @@ class StudentsController < ApplicationController
             FileUtils.cp tmp.path, file
           end  
         end
-        @student.complete if @student.vaidate_required_field?
+        if @student.validate_submit == "1"
+           @student.complete if @student.vaidate_required_field?   
+        end
         flash[:application_sucessful] = 'Application sucessfully created'
-        redirect_to new_student_path, :notice => 'Application sucessfully created'  
+        redirect_to student_path(@student)  
       else
+        @student.confirm_email = params[:student][:email_confirmation]
         render :action => "new" 
       end
-    else
-      @student.errors.add(:base, "Captcha verification faild")
-      render :action => "new" 
-    end  
+    #else
+    #  @student.errors.add(:base, "Captcha verification faild")
+    #  render :action => "new" 
+    #end  
   end
 
   def update

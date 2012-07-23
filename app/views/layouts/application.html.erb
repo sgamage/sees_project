@@ -32,12 +32,10 @@
           <div id="mid" class="clearfix">
             <div id="content">
               <%- flash.each do |name, msg| -%>
-                <% unless name.to_s == "notice" %>
-                	<%if request.referer != "/" %> 
-                		<%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-                	<% end %>
-                <% end %>	
-		      <%- end -%>	
+                <% unless msg.to_s.match(/You need to/) %>
+                	<%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+                <% end %>
+              <%- end -%>	
               <div id="w4">
                 <%= yield %>
               </div>
@@ -59,9 +57,8 @@
           
         </div>
       </div>
-	<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"%>
+	<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"%>
 	<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"%>
 	<%= javascript_include_tag "application.js"%>
-	<%#= javascript_include_tag "autocomplete-rails.js"%>
 	</body>
 </html>

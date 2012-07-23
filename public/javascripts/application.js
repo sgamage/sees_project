@@ -107,6 +107,9 @@ $(document).ready(function() {
 		
 	});
 	
+	//setting up e-mail and confirm e-mail
+	$("#student_email_confirmation").val($("#student_email").val());
+	
 })
 
 function show_messages(str){
