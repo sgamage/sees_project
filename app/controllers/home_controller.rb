@@ -16,12 +16,15 @@ class HomeController < ApplicationController
   def handle_student_login
     if current_user.student?
       student = Student.logged_in_student(current_user.id)
-      if student && student.vaidate_required_field?
-        #redirect_to edit_student_path(student)
-        redirect_to student_path(student)
-      else
-        #redirect_to student_path(student)
-        redirect_to edit_student_path(student)  
+      # if student && student.vaidate_required_field?
+        # #redirect_to edit_student_path(student)
+        # redirect_to student_path(student)
+      # else
+        # #redirect_to student_path(student)
+        # redirect_to edit_student_path(student)  
+      # end
+      if student
+        redirect_to edit_student_path(student)
       end
     end
   end
