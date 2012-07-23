@@ -7,7 +7,12 @@ class HomeController < ApplicationController
   def index
     @students = nil
     if current_user.principal?
-      @students = Student.submitted_applications.for_my_school(session[:school].id) 
+      if session[:school]
+        @students = Student.submitted_applications.for_my_school(session[:school].id).order(:application_status_id)
+      else
+        @students = []  
+      end
+       
     elsif current_user.admin?
       @students = Student.all 
     end

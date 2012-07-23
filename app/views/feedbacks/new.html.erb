@@ -1,3 +1,13 @@
+<h1>Principal’s Supporting Application for <%= @student.try(:full_name) %> </h1>
+<% if @feedback.errors.any? %>
+    <div id="error_explanation" class="form-error">
+  <ul>
+      <% @feedback.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+<% end %>
 <%= render :partial => 'students/studentdetails', :locals => {:student => @student} %>
 <%= form_for(@feedback, :html =>{:class => "formbuilder"}) do |f| %>
     <%= f.hidden_field :student_id, :value => @student.try(:id) %>
@@ -7,7 +17,7 @@
     <legend>Principals Feedback</legend>
     <p>
       <label>Support the student application: <em>*</em></label>
-      <%= f.select(:support_student, [['Yes', 1], ['No', 0]], {}) %>
+      <%= f.select(:support_student, [['No', 0], ['Yes', 1]], {}) %>
     </p>
     <div id="principal_feedback_step1">
       <p>
@@ -31,3 +41,6 @@
     <%= link_to "back" , root_path , :class => "submit-button button" %>
   </div>
 <% end %>
+<div id="feedback-confirm" title="Feedback submit">
+ <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Are you sure you want to submit this feedback?</p>
+</div>

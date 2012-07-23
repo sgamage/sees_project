@@ -49,12 +49,7 @@ $(document).ready(function() {
     	  var str = "";
 	      $("select option:selected").each(function () {
 	            str += $(this).text();
-	            if(str == "No"){
-	      		  $("#principal_feedback_step1").show('slow');	
-	      		}
-	      		if(str == "Yes"){
-	      		  $("#principal_feedback_step1").hide('slow');	
-	      		}
+	            principal_feedback(str);
 	      });
 	});
 	
@@ -107,8 +102,41 @@ $(document).ready(function() {
 		
 	});
 	
+	$("#feedback-confirm").hide('fast');
+	$("#feedback_submit").click(function (){
+		if ($("#feedback_submit").val() == "Next"){
+		   return true;	
+		}
+		if ($("#feedback_submit").val() == "Submitting.."){
+		   return true;	
+		}
+		$("#feedback-confirm").show('fast');
+		$( "#feedback-confirm" ).dialog({
+		  resizable: false,
+		  height:140,
+		  modal: true,
+		  buttons: {
+			"Submit Form": function() {
+				$( this ).dialog( "close" );
+				$("#feedback_submit").attr('value', 'Submitting..');
+				$("#feedback_submit").click(); 
+			},
+			Cancel: function() {
+				$( this ).dialog( "close" );
+				$("#feedback-confirm").hide('fast');
+				return false;
+			}
+			}
+		});
+		return false;
+	});
+	
 	//setting up e-mail and confirm e-mail
 	$("#student_email_confirmation").val($("#student_email").val());
+	
+	feedback = $("#feedback_support_student option:selected").text();
+	principal_feedback(feedback);
+	
 	
 })
 
@@ -130,4 +158,15 @@ function show_messages(str){
     	$("#eas_yes").hide('slow');
         $("#eas_no").hide('slow');
     }
+}
+
+function principal_feedback(feedback){
+	if(feedback == "No"){
+	  $("#principal_feedback_step1").show('slow');	
+	  $("#feedback_submit").attr('value', 'Submit');	
+	}
+	if(feedback == "Yes"){
+	  $("#principal_feedback_step1").hide('slow');	
+	  $("#feedback_submit").attr('value', 'Next');
+	}
 }

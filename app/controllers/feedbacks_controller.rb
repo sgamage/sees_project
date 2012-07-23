@@ -9,15 +9,24 @@ class FeedbacksController < ApplicationController
   def create
     @feedback = Feedback.new(params[:feedback])
     if @feedback.save
-       redirect_to edit_feedback_path(@feedback)
+       if params[:feedback][:support_student] == "0"
+         student = @feedback.student
+         student.principal_feedback
+         flash[:application_sucessful] = "Feedback successfully submitted"
+         redirect_to root_path  
+       else
+         redirect_to edit_feedback_path(@feedback)
+       end
+       
     else
+      @student = @feedback.student
       render action: "new"
-      @student = Student.find(@student.id)
     end 
   end
   
   def edit
     @feedback = Feedback.find(params[:id])
+    @student = @feedback.student
   end
   
   def update

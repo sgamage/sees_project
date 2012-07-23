@@ -7,4 +7,8 @@ module ApplicationHelper
      str == ""
   end
   
+  def school_name_display
+    "FOR #{session[:school].try(:name)}" if session[:school]
+  end
+  
 end

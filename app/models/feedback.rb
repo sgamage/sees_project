@@ -6,6 +6,8 @@ class Feedback < ActiveRecord::Base
   belongs_to :student
   has_many :feedback_question_answers
   
+  validates :application_support_comment, :length => { :within => 1..250 }, :allow_blank => true
+  
   after_update :set_question_answers
   
   def set_question_answers

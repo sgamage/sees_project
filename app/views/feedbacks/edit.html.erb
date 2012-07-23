@@ -1,3 +1,4 @@
+<h1>Principal’s Supporting Application for <%= @student.try(:full_name) %> </h1>
 <%= form_for(@feedback, :html =>{:class => "formbuilder", :onsubmit => "disableButtons();"}) do |f| %>
   
   <%= render :partial => 'questions'%>
@@ -17,7 +18,7 @@
     <div class="clr"></div>
   </fieldset>
   <div>
-    <%= f.check_box :read_confirmation %>I have read the student's application and i can <br/>
+    I have read the student's application and i can <br/>
     <label></label><%= f.radio_button :recommandation_level, "recommand" %> Highly Recommend<br/>
     <label></label><%= f.radio_button :recommandation_level, "highly_recommand" %> Recommend<br/>
     <label></label><%= f.radio_button :recommandation_level, "support" %> Support
