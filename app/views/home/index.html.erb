@@ -7,11 +7,11 @@
         <ol>
           <li>
             <label>School name</label>
-            <%= collection_select :schools, '', School.all, :id, :display_title%>
+            <%= collection_select :schools, '', School.all, :id, :display_title, :include_blank => true%>
           </li>
           <li>
             <label>Course</label>
-            <%= collection_select :courses, '', Course.all, :id, :name %>
+            <%= collection_select :courses, '', Course.all, :id, :name, :include_blank => true %>
           </li>
           <li>
             <label></label>
@@ -23,11 +23,11 @@
         <ol>
           <li>
             <label>Status</label>
-            <%= collection_select(:applicationstatus, '', ApplicationStatus.all, :id, :status) %>
+            <%= collection_select :applicationstatus, '', ApplicationStatus.all, :id, :status, :include_blank => true %>
           </li>
           <li>
             <label>Student name</label>
-            <input type="text" />
+            <%= text_field_tag :student_name %>
           </li>
         </ol>
       </div>

@@ -5,16 +5,22 @@ class HomeController < ApplicationController
   before_filter :handle_principal
   
   def index
-    @students = nil
+    school_id = course_id = applicationstatus_id = 0
+    student_name = ""
+    @students = []
     if current_user.principal?
       if session[:school]
         @students = Student.submitted_applications.for_my_school(session[:school].id).order(:application_status_id)
-      else
-        @students = []  
       end
-       
     elsif current_user.admin?
+      school_id = params[:schools].first if params[:schools] 
+      course_id = params[:course].first if params[:course]
+      applicationstatus_id = params[:applicationstatus].first if params[:course]
+      student_name = params[:student_name]
       @students = Student.all
+      if school_id.to_i != 0
+        @students = Student.for_my_school(school_id)  
+      end
     end
   end
   

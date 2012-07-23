@@ -52,6 +52,11 @@ class Student < ActiveRecord::Base
     {:conditions => {:school_id => school_id}}
   }
   
+  scope :for_course, lambda {|course_id|
+    {:conditions => {:course_id => course_id}}
+  }
+  
+  
   def application_acceptence
     errors.add(:base, "You must accept Declaration") unless declaration1
     errors.add(:base, "You must accept Principal support for E12 application form") unless declaration2
