@@ -137,6 +137,7 @@ $(document).ready(function() {
 	feedback = $("#feedback_support_student option:selected").text();
 	principal_feedback(feedback);
 	
+	$("#feedback_application_support_status_id_3").attr("checked", "true");
 	
 })
 
