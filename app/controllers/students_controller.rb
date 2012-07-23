@@ -2,7 +2,7 @@ require 'fileutils'
 class StudentsController < ApplicationController
   before_filter :authenticate_user!, :except => [:new, :create, :submit, :show, :autocomplete_school_name]
   before_filter :cannot_create_application_for_already_created, :only => [:new, :create]
-  autocomplete :school, :name
+  #autocomplete :school, :name
   # GET /students/1
   # GET /students/1.json
   def show
