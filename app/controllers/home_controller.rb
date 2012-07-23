@@ -14,7 +14,8 @@ class HomeController < ApplicationController
       end
        
     elsif current_user.admin?
-      @students = Student.all 
+      @students = Student.all
+      redirect_to comments_path
     end
   end
   
