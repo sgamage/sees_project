@@ -132,6 +132,14 @@ class Student < ActiveRecord::Base
     end
   end
   
+  def uploaded_files
+    student_files.length
+  end
+  
+  def remaning_uploads
+    Student.number_of_files - uploaded_files
+  end
+  
   def exceed_max_file_size?(file)
     file.size > 2000000 #2MB
   end

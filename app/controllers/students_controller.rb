@@ -58,10 +58,24 @@ class StudentsController < ApplicationController
   def update
     @student = Student.find(params[:id])
     @student.validate_submit = params["final_submit_flag"]
+    @student.attached_files = params["file"]
     if @student.update_attributes(params[:student])
-      @student.complete if @student.vaidate_required_field?
+      upload_count = @student.remaning_uploads
+      upload_count.to_i.times do |i|
+        unless params["file"].nil? || params["file"]["#{i}"].nil?
+          tmp = params["file"]["#{i}"]#.tempfile
+          file_name = params["file"]["#{i}"].original_filename
+          file = File.join("public/data", "#{@student.id}#{file_name}")
+          display_name = params["file_name"]["#{i}"]
+          StudentFile.create(:name => "#{@student.id}#{file_name}", :student_id => @student.id, :display_name => display_name)
+          FileUtils.cp tmp.path, file
+        end  
+      end
+      if @student.validate_submit == "1"
+         @student.complete if @student.vaidate_required_field?   
+      end
       flash[:application_sucessful] = 'Application sucessfully updated'
-      redirect_to edit_student_path(@student), :notice => 'Application sucessfully updated'   
+      redirect_to student_path(@student)   
     else
       render :action => "edit"
     end
