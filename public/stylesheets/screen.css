@@ -2172,9 +2172,10 @@ p.paging a.prev, p.paging span.prev {
     text-decoration: none;
     font-family: Lucida Grande;
     margin:0 0 0 13px;
+    text-decoration: none !important;
 
 }
-#content form.formbuilder div.buttons a.button.submit-button {
+#content form.formbuilder div.buttons a.button.submit-button, .form-buttons .submit-button.button{
     float:right;
 }
 #content form.formbuilder input.button:hover {
@@ -2423,5 +2424,25 @@ p.paging a.prev, p.paging span.prev {
     display: none;
 }
 #error_explanation  {
+    color:red;
+}
+#flash_application_sucessful {
+    border-color: #448900;
+    border-style: solid;
+    border-width: 2px 0 1px;
+    color: #448900;
+    font-size: 1.3em;
+    padding: 1em;
+    background-color: #e7ffcf;
+    margin-bottom: 0.5em;
+    
+}
+
+.signout {
+    
+    background: none;
+    color:#fff;
+    text-decoration:none;
+    border:none;
     color:red;
 }

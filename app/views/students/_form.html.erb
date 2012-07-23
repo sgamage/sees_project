@@ -1,7 +1,7 @@
 <%= form_for(@student, :html => {:multipart => true, :class => "formbuilder"})  do |f| %>
   <% if @student.errors.any? %>
     <div id="error_explanation" class="form-error">
-	  <ul>
+  <ul>
       <% @student.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>

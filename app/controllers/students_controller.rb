@@ -43,7 +43,7 @@ class StudentsController < ApplicationController
         if @student.validate_submit == "1"
            @student.complete if @student.vaidate_required_field?   
         end
-        flash[:application_sucessful] = 'Application sucessfully created'
+        flash[:application_sucessful] = 'Application successfully created'
         redirect_to student_path(@student)  
       else
         @student.confirm_email = params[:student][:email_confirmation]
@@ -74,7 +74,7 @@ class StudentsController < ApplicationController
       if @student.validate_submit == "1"
          @student.complete if @student.vaidate_required_field?   
       end
-      flash[:application_sucessful] = 'Application sucessfully updated'
+      flash[:application_sucessful] = 'Application successfully submitted'
       redirect_to student_path(@student)   
     else
       render :action => "edit"

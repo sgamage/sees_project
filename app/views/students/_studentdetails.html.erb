@@ -9,44 +9,59 @@
         <label>Date of birth:</label>
         <label class="field"><%= student.date_of_birth %></label>
       </li>
+      <% if !empty_string?(student.parent_name) %>
       <li>
         <label>Parent or carers name:</label>
         <label class="field"><%= student.parent_name %></label>
       </li>
+      <% end %>
+      <% if !empty_string?(student.parent_phone) %>
       <li>
         <label>Parent or carers phone:</label>
         <label class="field"><%= student.parent_phone %></label>
       </li>
+      <%end%>
+      <% if !empty_string?(student.parent_mobile) %>
       <li>
         <label>Parent or carers mobile:</label>
         <label class="field"><%= student.parent_mobile %></label>
       </li>
+      <% end %>
+      <% if !empty_string?(student.uac_number) %>
       <li>
         <label>UAC applicant number:</label>
         <label class="field"><%= student.uac_number %></label>
       </li>
+      <%end%>
     </ol>
   </div>
 </fieldset>
   <fieldset><legend>Contact Details</legend>
     <div ><ol>
-        
+        <% if !empty_string?(student.address1) %>
         <li>
           <label>Address:</label>
           <span class="field"><%= student.address1 %>,<br/> <%= student.address2 %><br/><%= student.suburb %><br/><%= student.try(:state).try(:name) %><br/><%= student.post_code %></span>
         </li>
+        <%end%>
+        <% if !empty_string?(student.email) %>
         <li>
           <label>Email:</label>
           <label class="field"><%= student.email %></label>
         </li>
+        <% end %>
+        <% if !empty_string?(student.mobile) %>
         <li>
           <label>Mobile:</label>
           <label class="field"><%= student.mobile %></label>
         </li>
+        <%end%>
+        <% if !empty_string?(student.phone) %>
         <li>
           <label>Phone:</label>
           <label class="field"><%= student.phone %></label>
         </li>
+        <%end%>
       </ol>
 
     </div>
@@ -63,21 +78,29 @@
       <label class="field"><%= student.try(:course).try(:name) %></label>
       </select>
     </p>
+    <% if !empty_string?(student.note1) %>
     <p><b>1. Outline the co-curricular activities in which you have been involved in. These could be sports, cultural and or community activities, or school leadership roles. Choose one example and tell us why you chose to undertake that activity and what you learned or gained from it.</b>
       <br>
       <span class="field"><%= student.note1 %></span></p>
+    <%end%>
+    <% if !empty_string?(student.note2) %>  
     <p>
 
       <b>2. What would you consider your three best academic achievements? Select the one or which most you are proud of and tell us why it is important to you: </b>
       <br><span class="field"> <%= student.note2 %></span>
     </p>
+    <%end%>
+    <% if !empty_string?(student.note3) %>
     <p>
 
       <b>3. Tell us why you want to study the course you have chosen. What is your interest in this area and what do you hope to achieve from studying this course?</b> 
       <br><span class="field"><%= student.note3 %></span>
     </p>
+    <%end%>
   </fieldset>
+  <% if student.uploaded_files > 0 %>
   <fieldset>
+  	    
 	    <legend>Attachment details</legend>
 	    <div>
 	      <% student.student_files.each do |attachment| %>
@@ -87,7 +110,9 @@
 	        </p>
 	      <% end %>
 	    </div>
+	    
 	</fieldset>
+	<%end%>
 </form>
 
 <div style="display:none;">

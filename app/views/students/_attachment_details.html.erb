@@ -2,10 +2,8 @@
     <legend>Attachment details</legend>
     <div>
       <% student.student_files.each do |attachment| %>
-      	<p>
          <label><%= attachment.display_name %></label>
          <a href="/data/<%= attachment.name %>"><%= attachment.name %></a>
-        </p>
       <% end %>
     </div>
 </fieldset>
