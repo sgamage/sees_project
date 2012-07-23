@@ -216,7 +216,7 @@
   <p><span class="info-tip">if your application is complete, please submit now. Once your application has been submitted you are not able to make any changes or resubmit. <br/>
 If you cannot complete the application at this time you can save it and log back in at a later date.</span></p>
   <div class="buttons">
-    <% @student.new_record? %>
+    <%if @student.new_record? %>
      <%= link_to "Back", root_path, :class => "submit-button button" %>
     <%end%>
     <%= f.submit "Save", :class => "submit-button button" %>
