@@ -1,3 +1,6 @@
+<h1>
+	Principal's Supporting Application for <%= @student.full_name.upcase %>
+</h1>
 <form class="formbuilder">
 <%= render :partial => 'schooldetails', :locals => {:school => @school} %>
 <%= render :partial => 'feedbackquestion', :locals => {:student => @student} %>

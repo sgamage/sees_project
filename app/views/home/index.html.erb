@@ -5,11 +5,11 @@
       <ol>
         <li>
           <label>School name</label>
-          <%= collection_select :schools, :school_id, School.all, :id, :display_title%>
+          <%= collection_select :schools, '', School.all, :id, :display_title%>
         </li>
         <li>
           <label>Course</label>
-          <%= collection_select :courses, :course_id, Course.all, :id, :name %>
+          <%= collection_select :courses, '', Course.all, :id, :name %>
         </li>
       </ol>
     </div>
@@ -17,13 +17,13 @@
       <ol>
         <li>
           <label>Status</label>
-          <%= collection_select(:applicationstatus, :id, ApplicationStatus.all, :id, :status) %>
+          <%= collection_select(:applicationstatus, '', ApplicationStatus.all, :id, :status) %>
         </li>
       </ol>
     </div>
   </fieldset>
   <p class="button">
-    <input type="button" class="submit-button button" value="Search"/> </p>
+    <input type="submit" class="submit-button button" value="Search"/> </p>
   <p class="home">
 <% end %>  	
   <h1>Application List</h1>

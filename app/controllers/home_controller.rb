@@ -5,9 +5,11 @@ class HomeController < ApplicationController
   before_filter :handle_principal
   
   def index
-    @students = Student.submitted_applications
+    @students = nil
     if current_user.principal?
-      @students = @students.for_my_school(session[:school].id) 
+      @students = Student.submitted_applications.for_my_school(session[:school].id) 
+    elsif current_user.admin?
+      @students = Student.all 
     end
   end
   

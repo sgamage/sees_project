@@ -1,3 +1,4 @@
+<h1>Principal's Supporting Application for  <%= @feedback.student.full_name.upcase %></h1>
 <%= render :partial => 'students/studentdetails', :locals => {:student => @student} %>
 <%= form_for(@feedback, :html =>{:class => "formbuilder"}) do |f| %>
     <%= f.hidden_field :student_id, :value => @student.try(:id) %>
