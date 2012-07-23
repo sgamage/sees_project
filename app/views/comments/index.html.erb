@@ -67,6 +67,14 @@
     </table>
   </fieldset>
 
-<div class="buttons form-buttons">
-<%= link_to 'Next', new_comment_path(:id => @student.id), :class => "submit-button button" %>
-</div>
+<br/>
+<% if current_user.admin? %>
+  <fieldset>
+    <legend>Reports</legend>
+    <p>
+      <input type="button" class="submit-button button" value="Export to CSV"/> 
+      <input type="button" class="submit-button button" value="Export to PDF"/>
+    </p>
+  </fieldset>
+<% end %>
+</form>
