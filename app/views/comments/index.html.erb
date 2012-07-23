@@ -1,4 +1,71 @@
-<%= render 'form' %>
+<form class="formbuilder">
+  <% if current_user.admin? %>
+    <h1>Administration</h1>
+    <fieldset>
+      <legend>Application Search Criteria</legend>
+      <div class="fltleft column">
+        <ol>
+          <li>
+            <label>School name</label>
+            <%= collection_select :schools, '', School.all, :id, :display_title%>
+          </li>
+          <li>
+            <label>Course</label>
+            <%= collection_select :courses, '', Course.all, :id, :name %>
+          </li>
+          <li>
+            <label></label>
+            <input type="submit" class="submit-button button" value="Search"/>
+          </li>
+        </ol>
+      </div>
+      <div class="column fltleft">
+        <ol>
+          <li>
+            <label>Status</label>
+            <%= collection_select(:applicationstatus, '', ApplicationStatus.all, :id, :status) %>
+          </li>
+          <li>
+            <label>Student name</label>
+            <input type="text" />
+          </li>
+        </ol>
+      </div>
+    </fieldset>
+  <% end %>  
+    <br />
+  <fieldset>
+    <legend>Application List</legend>
+    <table id="submitted_applications" width="99%">
+      <tr>
+        <th>Application Number</th>
+        <th>Student Name</th>
+        <th>UAC Number</th>
+        <th>Submission Date</th>
+        <th>Status</th>
+        <th></th>
+      <tr>
+        <% @students.each do |student|  %>
+        <tr>
+          <td><%= application_id(student.id) %></td>                
+          <td><%= student.full_name %></td>
+          <td><%= student.uac_number %></td>
+          <td><%= format_date(student.created_at) %></td>
+          <td>
+            <%= applciation_status(student.application_status_id) %>
+          </td>
+          <td>
+            <% if current_user.admin?%>
+              <%= link_to "view", comments_path(:id => student.id) %>
+            <%end%>
+            <% if current_user.principal? && student.feedback? %>
+              <%= link_to "Feedback", new_feedback_path(:id => student.id) %>
+            <%end%>
+          </td>
+        </tr>
+      <% end %>			
+    </table>
+  </fieldset>
 
 <div class="buttons form-buttons">
 <%= link_to 'Next', new_comment_path(:id => @student.id), :class => "submit-button button" %>

@@ -21,7 +21,7 @@
     I have read the student's application and i can <br/>
     <label></label><%= f.radio_button :recommandation_level, "recommand" %> Highly Recommend<br/>
     <label></label><%= f.radio_button :recommandation_level, "highly_recommand" %> Recommend<br/>
-    <label></label><%= f.radio_button :recommandation_level, "support" %> Support
+    <label></label><%= f.radio_button :recommandation_level, "support", :checked => true %> Support
   </div>
     <div class="buttons">
       <input type="button" value="Submit" class="submit-button button" id="save">
