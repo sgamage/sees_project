@@ -21,25 +21,25 @@ $(document).ready(function() {
     
 
     
-    $("#save").click(function() {
-    	$(".radio_select").attr('disabled', 'disabled')
-    	id = $("#feedback_id").val();
-    	answer_list = $("#feedback_answers").val();
-    	extra_note = $("#feedback_extra_note").val();
-    	confirm = $("#feedback_read_confirmation").val(); 
-    	level1 = $("input:radio[name=feedback_recommandation_level]:checked").val();
-    	level2 = $("input:radio[name=feedback_recommandation_level_highly_recommand]:checked").val();
-    	$.ajax({ 
-	      url:'/feedbacks/' + id,
-	      type: 'PUT', 
-	      dataType: 'json',
-	      data: {'answers': answer_list, 'extra_note': extra_note, 'confirm': confirm, 'level1': level1, 'level2' : level2},
-	      success: function(content) {
-             window.location.href = "/"
-          }
-	    });
-	    return false; 
-    });
+    // $("#save").click(function() {
+    	// $(".radio_select").attr('disabled', 'disabled')
+    	// id = $("#feedback_id").val();
+    	// answer_list = $("#feedback_answers").val();
+    	// extra_note = $("#feedback_extra_note").val();
+    	// confirm = $("#feedback_read_confirmation").val(); 
+    	// level1 = $("input:radio[name=feedback_recommandation_level]:checked").val();
+    	// level2 = $("input:radio[name=feedback_recommandation_level_highly_recommand]:checked").val();
+    	// $.ajax({ 
+	      // url:'/feedbacks/' + id,
+	      // type: 'PUT', 
+	      // dataType: 'json',
+	      // data: {'answers': answer_list, 'extra_note': extra_note, 'confirm': confirm, 'level1': level1, 'level2' : level2},
+	      // success: function(content) {
+             // window.location.href = "/"
+          // }
+	    // });
+	    // return false; 
+    // });
     
     
     
@@ -120,6 +120,45 @@ $(document).ready(function() {
 				$( this ).dialog( "close" );
 				$("#feedback_submit").attr('value', 'Submitting..');
 				$("#feedback_submit").click(); 
+			},
+			Cancel: function() {
+				$( this ).dialog( "close" );
+				$("#feedback-confirm").hide('fast');
+				return false;
+			}
+			}
+		});
+		return false;
+	});
+	$("#save").click(function (){
+		if ($("#save").val() == "Submitting Please wait.."){
+		   return true;	
+		}
+		$("#feedback-confirm").show('fast');
+		$( "#feedback-confirm" ).dialog({
+		  resizable: false,
+		  height:140,
+		  modal: true,
+		  buttons: {
+			"Submit Form": function() {
+				$( this ).dialog( "close" );
+				$("#save").attr('value', 'Submitting Please wait..');
+				$(".radio_select").attr('disabled', 'disabled')
+		    	id = $("#feedback_id").val();
+		    	answer_list = $("#feedback_answers").val();
+		    	extra_note = $("#feedback_extra_note").val();
+		    	confirm = $("#feedback_read_confirmation").val(); 
+		    	level1 = $("input:radio[name=feedback_recommandation_level]:checked").val();
+		    	level2 = $("input:radio[name=feedback_recommandation_level_highly_recommand]:checked").val();
+		    	$.ajax({ 
+			      url:'/feedbacks/' + id,
+			      type: 'PUT', 
+			      dataType: 'json',
+			      data: {'answers': answer_list, 'extra_note': extra_note, 'confirm': confirm, 'level1': level1, 'level2' : level2},
+			      success: function(content) {
+		             window.location.href = "/"
+		          }
+			    });
 			},
 			Cancel: function() {
 				$( this ).dialog( "close" );

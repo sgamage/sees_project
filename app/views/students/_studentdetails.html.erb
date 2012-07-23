@@ -41,12 +41,12 @@
         <% if !empty_string?(student.address1) %>
         <li>
           <label>Address:</label>
-          <lable class="field"><%= student.address1 %>,
+          <span class="field"><%= student.address1 %>,
           	 <% if !empty_string?(student.address2) %>
           	 <br/> <%= student.address2 %>
           	 <% end %>
           	 <br/>
-             <%= student.suburb %><br/><%= student.try(:state).try(:name) %><br/><%= student.post_code %></lable>
+             <%= student.suburb %><br/><%= student.try(:state).try(:name) %><br/><%= student.post_code %></span>
         </li>
         <%end%>
         <% if !empty_string?(student.email) %>

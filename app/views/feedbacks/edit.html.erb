@@ -1,6 +1,6 @@
 <h1>Principal’s Supporting Application for <%= @student.try(:full_name) %> </h1>
 <%= form_for(@feedback, :html =>{:class => "formbuilder", :onsubmit => "disableButtons();"}) do |f| %>
-  
+  <%= render :partial => 'comments/schooldetails', :locals => {:school => @school} %>   
   <%= render :partial => 'questions'%>
   <%= f.hidden_field :answers %>
   <%= f.hidden_field :id %>
@@ -24,7 +24,10 @@
     <label></label><%= f.radio_button :recommandation_level, "support" %> Support
   </div>
     <div class="buttons">
-      <input type="button" value="Submit", class="submit-button button" id="save">
+      <input type="button" value="Submit" class="submit-button button" id="save">
       <%= link_to "back", root_path, :class => 'submit-button button' %>
     </div>
 <% end %>
+<div id="feedback-confirm" title="Feedback submit">
+ <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Are you sure you want to submit this feedback?</p>
+</div>

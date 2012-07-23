@@ -27,6 +27,7 @@ class FeedbacksController < ApplicationController
   def edit
     @feedback = Feedback.find(params[:id])
     @student = @feedback.student
+    @school = @student.school
   end
   
   def update
