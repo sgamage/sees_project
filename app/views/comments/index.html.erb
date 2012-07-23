@@ -1,4 +1,4 @@
-<form class="formbuilder">
+<form class="formbuilder" action="/comments/">
   <% if current_user.admin? %>
     <h1>Administration</h1>
     <fieldset>
@@ -56,7 +56,7 @@
           </td>
           <td>
             <% if current_user.admin?%>
-              <%= link_to "view", comments_path(:id => student.id) %>
+              <%= link_to "view", comment_path(student.id) %>
             <%end%>
             <% if current_user.principal? && student.feedback? %>
               <%= link_to "Feedback", new_feedback_path(:id => student.id) %>
