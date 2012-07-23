@@ -2,5 +2,5 @@
 <%= render :partial => 'studentdetails', :locals => {:student => @student} %>
 <div class="buttons  form-buttons">
 <%= (link_to 'Edit', edit_student_path(@student), :class => "submit-button button") unless @student.vaidate_required_field? %>
-<%= (link_to "back", root_path, :class => "submit-button button") %>
+<%= (link_to "back", root_path, :class => "submit-button button") unless @student.vaidate_required_field? %>
 </div>

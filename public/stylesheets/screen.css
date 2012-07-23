@@ -2437,12 +2437,26 @@ p.paging a.prev, p.paging span.prev {
     margin-bottom: 0.5em;
     
 }
+#flash_notice {
+    border-color: #12578c;
+    border-style: solid;
+    border-width: 2px 0 1px;
+    color: #12578c;
+    font-size: 1.3em;
+    padding: 1em;
+    background-color: #d8eeff;
+    margin-bottom: 0.5em;    
+}
 
 .signout {
     
     background: none;
     color:#fff;
     text-decoration:none;
+    border:none;
+    cursor: pointer;
+}
+.att-view {
     border:none;
     color:red;
 }

@@ -40,10 +40,12 @@ class StudentsController < ApplicationController
             FileUtils.cp tmp.path, file
           end  
         end
+        message = "created"
         if @student.validate_submit == "1"
+           message = "submitted"
            @student.complete if @student.vaidate_required_field?   
         end
-        flash[:application_sucessful] = 'Application successfully created'
+        flash[:application_sucessful] = "Application successfully #{message}"
         redirect_to student_path(@student)  
       else
         @student.confirm_email = params[:student][:email_confirmation]
@@ -71,10 +73,12 @@ class StudentsController < ApplicationController
           FileUtils.cp tmp.path, file
         end  
       end
+      message = "saved"
       if @student.validate_submit == "1"
+         message = "submitted"
          @student.complete if @student.vaidate_required_field?   
       end
-      flash[:application_sucessful] = 'Application successfully submitted'
+      flash[:application_sucessful] = "Application successfully #{message}"
       redirect_to student_path(@student)   
     else
       render :action => "edit"
