@@ -56,11 +56,19 @@
       <ol>
         <li>
           <label>Contact Email <em>*</em></label>
-          <%= f.text_field :email %>
+          <% if @student.new_record? %>
+            <%= f.text_field :email %>
+          <%else%>
+            <%= f.text_field :email, :readonly => true %>
+          <%end%>
         </li>
         <li>
           <label>Confirm Contact Email <em>*</em></label>
-          <%= f.text_field :email_confirmation, :value => (@student.email unless @student.new_record?) %>
+          <% if @student.new_record? %>
+            <%= f.text_field :email_confirmation, :value => (@student.email unless @student.new_record?) %>
+          <%else%>
+            <%= f.text_field :email_confirmation, :value => (@student.email unless @student.new_record?), :readonly => true %>
+          <%end%>
         </li>
         <li>
           <label>Mobile</label>
@@ -87,11 +95,11 @@
           <%= f.text_field :suburb %>
         </li>
         <li>
-          <label>State</label>
+          <label>State <em>*</em></label>
           <%= f.collection_select :state_id, State.all, :id, :name %>
         </li>
         <li>
-          <label>Post code</label>
+          <label>Post code <em>*</em></label>
           <%= f.text_field :post_code, :class => "short" %>
         </li>
       </ol>
@@ -180,7 +188,7 @@
   </fieldset>
 
   <div >
-    <%= check_box_tag(:acceptance) %>     
+    <%= f.check_box(:declaration2) %>     
     I understand that my application will not be considered unless my Principal supports my application and submits the supporting E12 Principal’s Application form.
     <br/>
     <p><b>Declaration</b><br/>

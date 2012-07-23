@@ -1,6 +1,6 @@
 class Student < ActiveRecord::Base
   attr_accessible :address1, :address2, :completed, :confirm_email, 
-                  :course_id, :date_of_birth, :declaration1, :acceptance, 
+                  :course_id, :date_of_birth, :declaration1, :declaration2, :acceptance, 
                   :email, :faculty_id, :first_name, :last_name, :mobile, :note1, :note2, :note3, 
                   :parent_mobile, :parent_name, :parent_phone, :phone, :post_code, :school_id, :state_id, 
                   :suburb, :title, :uac_number, :user_id
@@ -15,8 +15,8 @@ class Student < ActiveRecord::Base
   validates :email_confirmation, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i}, :allow_blank => Proc.new { |a| a.email.blank?} 
   validates_confirmation_of :email
   validates :school, :presence => true
-  validates :uac_number, :uniqueness => true
   
+  validates :uac_number, :uniqueness => true
   validates :parent_phone, :length => { :within => 1..10 }, :allow_blank => true
   validates :parent_mobile, :length => { :within => 1..10 }, :allow_blank => true
   validates :mobile, :length => { :within => 1..10 }, :allow_blank => true
@@ -35,7 +35,7 @@ class Student < ActiveRecord::Base
   
                
 
-  validate :new_user_login, :sec_school, :submittion, :validate_attachments
+  validate :new_user_login, :sec_school, :submittion, :validate_attachments, :application_acceptence
   
   before_create :update_user
   
@@ -52,6 +52,11 @@ class Student < ActiveRecord::Base
     {:conditions => {:school_id => school_id}}
   }
   
+  def application_acceptence
+    errors.add(:base, "You must accept Declaration") unless declaration1
+    errors.add(:base, "You must accept Principal support for E12 application form") unless declaration2
+  end
+    
   
   def submittion
     if validate_submit == "1"
@@ -87,7 +92,7 @@ class Student < ActiveRecord::Base
   end
   
   def vaidate_required_field?
-   !((title.blank?) || (first_name.blank?) || (last_name.blank?) || (date_of_birth.blank?) || (email.blank?) || (parent_name.blank?) || (suburb.blank?) || (uac_number.blank?))
+   !((title.blank?) || (first_name.blank?) || (last_name.blank?) || (date_of_birth.blank?) || (email.blank?) || (parent_name.blank?) || (suburb.blank?) || (uac_number.blank?) || (post_code.blank?))
   end
   
   def complete
