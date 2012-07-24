@@ -5,7 +5,7 @@
   <%= f.hidden_field :answers %>
   <%= f.hidden_field :id %>
 
-  <fieldset><legend>Other Information</legend>
+  <fieldset class="no-spc-abv">
     <div ><ol>
 
         <li>
@@ -18,7 +18,7 @@
     <div class="clr"></div>
   </fieldset>
   <div>
-    I have read the student's application and i can <br/>
+    I have read the student's application and I can <br/>
     <label></label><%= f.radio_button :recommandation_level, "recommand" %> Highly Recommend<br/>
     <label></label><%= f.radio_button :recommandation_level, "highly_recommand" %> Recommend<br/>
     <label></label><%= f.radio_button :recommandation_level, "support", :checked => true %> Support
@@ -29,5 +29,5 @@
     </div>
 <% end %>
 <div id="feedback-confirm" title="Feedback submit">
- <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Are you sure you want to submit this feedback?</p>
+ <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Once you submit the supporting application you cannot resubmit.  Are you sure you want to submit the supporting application?</p>
 </div>

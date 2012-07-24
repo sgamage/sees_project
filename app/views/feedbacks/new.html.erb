@@ -14,7 +14,7 @@
   	<%= f.hidden_field :user_id, :value => current_user.id %>
   	<%= f.hidden_field :school_id, :value => @student.try(:school).try(:id) %>
 <fieldset>
-    <legend>Principals Feedback</legend>
+    <legend>Principal’s Recommendation</legend>
     <p>
       <label>Support the student application: <em>*</em></label>
       <%= f.select(:support_student, [['No', 0], ['Yes', 1]], {}) %>

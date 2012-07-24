@@ -59,7 +59,7 @@
               <%= link_to "view", comments_path(:id => student.id) %>
             <%end%>
             <% if current_user.principal? && student.feedback? %>
-              <%= link_to "Feedback", new_feedback_path(:id => student.id) %>
+              <%= link_to "View", new_feedback_path(:id => student.id) %>
             <%end%>
           </td>
         </tr>

@@ -1327,7 +1327,7 @@ body.splash #head h1 span#site-title {
     font-size:.95em;
 }
 #foot #legal {
-    width:47%;
+    width:60%;
     float:right;
     margin-top:.4em;
     text-align:right;
@@ -2459,4 +2459,7 @@ p.paging a.prev, p.paging span.prev {
 .att-view {
     width:450px;
     color:red;
+}
+.no-spc-abv {
+    margin-top:-20px !important;
 }

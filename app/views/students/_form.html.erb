@@ -13,7 +13,7 @@
       <ol>
         <li>
           <label>Title <em>*</em></label>
-          <%= select(:student, :title, [['Mr', 'Mr'], ['Mrs', 'Mrs'], ['Ms', 'Ms']], {}, :class => "span1") %>
+          <%= select(:student, :title, [['Mr', 'Mr'], ['Miss', 'Miss'], ['Ms', 'Ms']], {}, :class => "span1") %>
         </li>
         <li>
           <label>First name <em>*</em></label>
@@ -134,11 +134,11 @@
     </p>
     <!-- when the school is a esa identified school -->
     <div id="eas_yes">
-      <p><span class="info-tip">This school has been identified as a L-SES school and you are eligible for Sydney Early Entry (E12) Scheme</span></p>
+      <p><span class="info-tip">This school is a government-identified low socioeconomic high school that is on the UAC EAS list of identified schools and you are eligible for Sydney Early Entry (E12) Scheme.</span></p>
     </div>
     <!-- when the school is NOT a esa identified schhol -->
     <div id="eas_no"><p >
-        <span class="info-tip">Your school is not an identified L-SES school you will need to complete an <a href="http://www.uac.edu.au/undergraduate/eas/" target="_blank">Educational Access Scheme</a> (EAS) to demonstrate financial hardship to be eligible for the E12 scheme.</span></p>
+        <span class="info-tip">Your school is not a government-identified low socioeconomic high school you will need to complete an <a href="http://www.uac.edu.au/undergraduate/eas/" target="_blank">Educational Access Scheme (EAS)</a> to demonstrate financial hardship to be eligible for the E12 scheme.</span></p>
       	<p><%= f.check_box(:sec_school_accept) %>   I understand my application will not be considered unless I lodge an EAS application form. UAC will provide the University with information regarding the status of my EAS application.</p></div>
     <p>
       <%= f.label :name, "Course" %>
@@ -150,7 +150,7 @@
       <%= f.text_area :note1, :class => "long" %> (Maximum 250 characters)</p>
     <p>
 
-      2. What would you consider your three best academic achievements? Select the one of which most you are most proud and tell us why it is important to you. <em>*</em>
+      2. What would you consider your three best academic achievements? Select the one of which you are most proud and tell us why it is important to you. <em>*</em>
       <br><%= f.text_area :note2, :class => "long" %><br /> (Maximum 250 characters)
     </p>
     <p>
@@ -214,8 +214,8 @@
   <p><% if @student.new_record? %>
       <%= recaptcha_tags %>
     <% end %></p>
-  <p><span class="info-tip">if your application is complete, please submit now. Once your application has been submitted you are not able to make any changes or resubmit. <br/>
-If you cannot complete the application at this time you can save it and log back in at a later date.</span></p>
+  <p><input type="checkbox" /> if your application is complete, please submit now. Once your application has been submitted you are not able to make any changes or resubmit. <br/>
+If you cannot complete the application at this time you can save it and log back in at a later date.</p>
   <div class="buttons">
     <%if @student.new_record? %>
      <%= link_to "Back", root_path, :class => "submit-button button" %>
@@ -226,5 +226,5 @@ If you cannot complete the application at this time you can save it and log back
 <%= hidden_field_tag 'final_submit_flag' %>	
 <% end %>
 <div id="dialog-confirm" title="Application submit">
-<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>You will not be able to update this application once submitted. Are you sure you want to submit?</p>
+<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Once you submit the supporting application you cannot resubmit.  Are you sure you want to submit the supporting application?</p>
 </div>
