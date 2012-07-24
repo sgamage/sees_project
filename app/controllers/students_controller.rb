@@ -2,11 +2,12 @@ require 'fileutils'
 class StudentsController < ApplicationController
   before_filter :authenticate_user!, :except => [:new, :create, :submit, :show, :autocomplete_school_name]
   before_filter :cannot_create_application_for_already_created, :only => [:new, :create]
+  before_filter :authorize_student, :only => [:show, :update, :edit]
   #autocomplete :school, :name
   # GET /students/1
   # GET /students/1.json
   def show
-    @student = Student.find(params[:id])
+    @student = Student.find(@current_student_id)
   end
 
   # GET /students/new
@@ -17,7 +18,7 @@ class StudentsController < ApplicationController
 
   # GET /students/1/edit
   def edit
-    @student = Student.find(params[:id])
+    @student = Student.find(@current_student_id)
   end
 
   # POST /students
@@ -25,7 +26,7 @@ class StudentsController < ApplicationController
   def create
     @student = Student.new(params[:student])
     #TODO: captcha removed for demo
-    if verify_recaptcha
+    #if verify_recaptcha
       @student.validate_submit = params["final_submit_flag"] 
       @student.attached_files = params["file"]
       #debugger
@@ -46,19 +47,24 @@ class StudentsController < ApplicationController
            @student.complete if @student.vaidate_required_field?   
         end
         flash[:application_sucessful] = "Application successfully #{message}"
-        redirect_to student_path(@student)  
+        if current_user
+          redirect_to student_path(@student)
+        else  
+          redirect_to new_student_path
+        end
+          
       else
         @student.confirm_email = params[:student][:email_confirmation]
         render :action => "new" 
       end
-    else
-      @student.errors.add(:base, "Captcha verification failed")
-      render :action => "new" 
-    end  
+    #else
+    #  @student.errors.add(:base, "Captcha verification failed")
+    #  render :action => "new" 
+    #end  
   end
 
   def update
-    @student = Student.find(params[:id])
+    @student = Student.find(@current_student_id)
     @student.validate_submit = params["final_submit_flag"]
     @student.attached_files = params["file"]
     if @student.update_attributes(params[:student])
@@ -103,6 +109,10 @@ class StudentsController < ApplicationController
   
   def cannot_create_application_for_already_created
     #FIXME: do not allow the new action for already logged users 
+  end
+  
+  def authorize_student
+    @current_student_id = (current_user.student?) ? current_user.student_id : params[:id]
   end
   
 end

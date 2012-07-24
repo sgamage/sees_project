@@ -54,7 +54,7 @@ SeesProject::Application.configure do
                     :address        => "mail.alliontechnologies.railsplayground.net",
                     :port           => 25,
                     :authentication => 'plain',
-                    :user_name      => "",
-                    :password       => ""
+                    :user_name      => "mailtester@alliontechnologies.railsplayground.net",
+                    :password       => "welcome"
   }
 end

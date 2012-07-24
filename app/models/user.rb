@@ -23,6 +23,9 @@ class User < ActiveRecord::Base
     user_type == "ADMIN"
   end
   
+  def student_id
+    Student.find_by_user_id(self.id).try(:id) if student? 
+  end
   
   
 end

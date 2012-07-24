@@ -1,11 +1,14 @@
 class Student < ActiveRecord::Base
+  HUMANIZED_ATTRIBUTES = {
+    :uac_number => "UAC Number"
+  }
   attr_accessible :address1, :address2, :completed, :confirm_email, 
-                  :course_id, :date_of_birth, :declaration1, :declaration2, :acceptance, 
+                  :course_id, :date_of_birth, :declaration1, :declaration2, :declaration3, :acceptance, 
                   :email, :faculty_id, :first_name, :last_name, :mobile, :note1, :note2, :note3, 
                   :parent_mobile, :parent_name, :parent_phone, :phone, :post_code, :school_id, :state_id, 
                   :suburb, :title, :uac_number, :user_id
   
-  attr_accessible :login_email, :password, :password_confirmation, :email_confirmation, :sec_school_accept, :validate_submit, :attached_files
+  attr_accessible :login_email, :password, :password_confirmation, :email_confirmation, :sec_school_accept, :validate_submit, :attached_files 
   attr_accessor :login_email, :password, :password_confirmation, :email_confirmation, :sec_school_accept, :validate_submit, :attached_files
                   
   belongs_to :user
@@ -16,7 +19,7 @@ class Student < ActiveRecord::Base
   validates_confirmation_of :email
   validates :school, :presence => true
   
-  validates :uac_number, :uniqueness => true
+  validates :uac_number, :uniqueness => true, :numericality => true, :length => { :within => 1..7 }, :allow_blank => true
   validates :parent_phone, :length => { :within => 1..10 }, :allow_blank => true
   validates :parent_mobile, :length => { :within => 1..10 }, :allow_blank => true
   validates :mobile, :length => { :within => 1..10 }, :allow_blank => true
@@ -35,7 +38,7 @@ class Student < ActiveRecord::Base
   
                
 
-  validate :new_user_login, :sec_school, :submittion, :validate_attachments, :application_acceptence
+  validate :new_user_login, :sec_school, :submittion, :validate_attachments, :application_acceptence, :accept_submit
   
   before_create :update_user
   
@@ -56,12 +59,18 @@ class Student < ActiveRecord::Base
     {:conditions => {:course_id => course_id}}
   }
   
+  def self.human_attribute_name(attr, options={})
+    HUMANIZED_ATTRIBUTES[attr.to_sym] || super
+  end
   
   def application_acceptence
     errors.add(:base, "You must accept Declaration") unless declaration1
     errors.add(:base, "You must accept Principal support for E12 application form") unless declaration2
   end
-    
+  
+  def accept_submit
+    errors.add(:base, "You must accept Submit confirmation") unless declaration3
+  end  
   
   def submittion
     if validate_submit == "1"

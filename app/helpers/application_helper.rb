@@ -11,4 +11,10 @@ module ApplicationHelper
     "FOR #{session[:school].try(:name)}" if session[:school]
   end
   
+  def get_state
+    # Need to do this as we need to keep the flexibility of adding
+    # new states later
+    State.find_by_name('NSW')
+  end
+  
 end
