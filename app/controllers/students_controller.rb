@@ -26,7 +26,7 @@ class StudentsController < ApplicationController
   def create
     @student = Student.new(params[:student])
     #TODO: captcha removed for demo
-    #if verify_recaptcha
+    if verify_recaptcha
       @student.validate_submit = params["final_submit_flag"] 
       @student.attached_files = params["file"]
       #debugger
@@ -57,10 +57,10 @@ class StudentsController < ApplicationController
         @student.confirm_email = params[:student][:email_confirmation]
         render :action => "new" 
       end
-    #else
-    #  @student.errors.add(:base, "Captcha verification failed")
-    #  render :action => "new" 
-    #end  
+    else
+      @student.errors.add(:base, "Captcha verification failed")
+      render :action => "new" 
+    end  
   end
 
   def update
