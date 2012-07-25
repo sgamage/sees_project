@@ -51,6 +51,10 @@ class Student < ActiveRecord::Base
     {:conditions => {:application_status_id => 1}}
   }
   
+  scope :principal_reviewed_applications, lambda {
+    {:conditions => {:application_status_id => 2}}
+  }
+  
   scope :for_my_school, lambda {|school_id|
     {:conditions => {:school_id => school_id}}
   }
@@ -71,6 +75,10 @@ class Student < ActiveRecord::Base
   def accept_submit
     errors.add(:base, "You must accept Submit confirmation") unless declaration3
   end  
+  
+  def principal_feedback_given?
+    self.application_status_id == 2
+  end
   
   def submittion
     if validate_submit == "1"

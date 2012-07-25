@@ -10,7 +10,9 @@ class HomeController < ApplicationController
     @students = []
     if current_user.principal?
       if session[:school]
-        @students = Student.submitted_applications.for_my_school(session[:school].id).order(:application_status_id)
+        @submitted_applications = Student.submitted_applications.for_my_school(session[:school].id).order(:application_status_id)
+        @principal_reviewed_applications = Student.principal_reviewed_applications.for_my_school(session[:school].id).order(:application_status_id)
+        @students = @submitted_applications + @principal_reviewed_applications
       end
     elsif current_user.admin?
       school_id = params[:schools].first if params[:schools] 

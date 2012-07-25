@@ -1,6 +1,6 @@
 module ApplicationHelper
   def format_date date
-    date.strftime('%d-%m-%Y')
+    date.strftime('%d-%B-%Y')
   end
   
   def empty_string? str
