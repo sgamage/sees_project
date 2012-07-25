@@ -46,7 +46,7 @@ SeesProject::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
-  config.action_mailer.default_url_options = { :host => 'http://alliontechnologies.railsplayground.net' }
+  config.action_mailer.default_url_options = { :host => 'alliontechnologies.railsplayground.net' }
   config.action_mailer.default :charset => "utf-8"
   config.action_mailer.perform_deliveries = true
   ActionMailer::Base.smtp_settings[:enable_starttls_auto] = false
