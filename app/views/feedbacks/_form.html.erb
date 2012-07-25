@@ -1,6 +1,6 @@
 <%= form_for(@feedback, :html =>{:class => "formbuilder"}) do |f| %>
   <% if @feedback.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="form-error">
       <ul>
       <% @feedback.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>

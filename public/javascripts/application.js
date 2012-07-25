@@ -173,7 +173,17 @@ $(document).ready(function() {
 	//setting up e-mail and confirm e-mail
 	$("#student_email_confirmation").val($("#student_email").val());
 	
-	feedback = $("#feedback_support_student option:selected").text();
+	feebback_validation = $("#feedback_feedback_validation").val();
+	if(feebback_validation != "1"){
+		feedback = $("#feedback_support_student option:selected").text();	
+	}
+	else{
+		$("#feedback_support_student").val("0")
+		feedback = "No"
+	}
+	 
+	
+	
 	principal_feedback(feedback);
 	
 	$("#feedback_application_support_status_id_1").attr("checked", "true");

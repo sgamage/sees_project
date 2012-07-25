@@ -24,6 +24,7 @@ class FeedbacksController < ApplicationController
        end
        
     else
+      @feedback.feedback_validation = 1
       @student = @feedback.student
       render action: "new"
     end 

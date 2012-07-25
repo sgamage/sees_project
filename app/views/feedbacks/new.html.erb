@@ -18,6 +18,7 @@
     <p>
       <label for="feedback_support_student">Support the student application: <em>*</em></label>
       <%= f.select(:support_student, [['',-1],['No', 0], ['Yes', 1]], {}) %>
+      <%= f.hidden_field :feedback_validation %>
     </p>
     <div id="principal_feedback_step1">
       <p>
