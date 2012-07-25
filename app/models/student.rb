@@ -150,7 +150,7 @@ class Student < ActiveRecord::Base
   
   def feedback?
     #!self.feedback.nil?
-    self.application_status_id = 1
+    self.application_status_id == 1
   end
   
   def validate_attachments

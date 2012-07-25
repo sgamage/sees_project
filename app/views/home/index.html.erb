@@ -60,7 +60,7 @@
             <%end%>
             <% if current_user.principal? && student.feedback? %>
               <% unless student.principal_feedback_given? %>
-               <%= link_to "View", new_feedback_path(:id => student.id) %>
+               <%= link_to "view", new_feedback_path(:id => student.id) %>
               <% end %> 
             <%end%>
           </td>
