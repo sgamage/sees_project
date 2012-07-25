@@ -1,0 +1,9 @@
+<p>Hi <%= @user.email %>!</p>
+
+<p>
+	Welcome to Sydney Early Entry (E12) application, Since you havent logged in to the system
+</p>
+
+<p>Please user the below link to change your auto generated password and change it</p>
+
+<p><%= link_to 'Change my password', edit_password_url(@user, :reset_password_token => @user.reset_password_token) %></p>

@@ -16,7 +16,6 @@ SeesProject::Application.configure do
 
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = true
-
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
 
@@ -28,8 +27,9 @@ SeesProject::Application.configure do
                     :address        => "smtp.gmail.com",
                     :port           => 587,
                     :authentication => :plain,
-                    :user_name      => "",
-                    :password       => ""
+                    :user_name      => "sameera207@gmail.com",
+                    :password       => "jaguar#1",
+                    :openssl_verify_mode  => 'none'
   }
 end
 

@@ -115,6 +115,15 @@ class Student < ActiveRecord::Base
     update_attribute("application_status_id", status.id)
     StudentNotification.notification_email(self).deliver
     StudentNotification.principal_notification(self).deliver
+    notify_first_time_principal
+  end
+  
+  def notify_first_time_principal
+    user = self.school.user
+    if user.sign_in_count == 0
+      #user.sign_in_count == 0 means not yet login
+      PrincipalNotification.notify_first_login(user).deliver  
+    end
   end
   
   def principal_feedback
