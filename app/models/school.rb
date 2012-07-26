@@ -1,5 +1,5 @@
 class School < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :email, :category, :user_id
   validates :name, :presence => true
   has_many :students
   belongs_to :user #principal

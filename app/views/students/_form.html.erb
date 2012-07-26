@@ -12,39 +12,41 @@
     <div class="fltleft column">
       <ol>
         <li>
-          <label>Title <em>*</em></label>
+          <label for="student_title" >Title <em>*</em></label>
           <%= select(:student, :title, [['Mr', 'Mr'], ['Miss', 'Miss'], ['Ms', 'Ms']], {}, :class => "span1") %>
         </li>
         <li>
-          <label>First name <em>*</em></label>
+          <label for="student_first_name" >First name <em>*</em></label>
           <%= f.text_field :first_name %>
         </li>
         <li>
-          <label>Last name <em>*</em></label>
+          <label for="student_last_name">Last name <em>*</em></label>
           <%= f.text_field :last_name %>
         </li>
         <li>
-          <label>Date of birth <em>*</em></label>
+          <label for="student_date_of_birth_1i" class="multiple-control"><span>Date of birth <em>*</em></span>
           <%= f.date_select :date_of_birth, {:start_year => Time.now.year, :end_year => Time.now.year - 70} %>
+          </label>
+          
         </li>
       </ol>
     </div>
     <div class="column fltleft">
       <ol>
         <li>
-          <label>Parent or carers name <em>*</em></label>
+          <label for="student_parent_name">Parent or carers name <em>*</em></label>
           <%= f.text_field :parent_name %>
         </li>
         <li>
-          <label>Parent or carers phone </label>
+          <label for="student_parent_phone">Parent or carers phone </label>
           <%= f.text_field :parent_phone, :maxlength => 10 %>
         </li>
         <li>
-          <label>Parent or carers mobile </label>
+          <label for="student_parent_mobile">Parent or carers mobile </label>
           <%= f.text_field :parent_mobile, :maxlength => 10 %>
         </li>
         <li>
-          <label>UAC applicant number <em>*</em></label>
+          <label for="student_uac_number">UAC applicant number <em>*</em></label>
           <%= f.text_field :uac_number, :maxlength => 7 %>
         </li>
       </ol>
@@ -55,7 +57,7 @@
     <div class="fltleft column">
       <ol>
         <li>
-          <label>Contact Email <em>*</em></label>
+          <label for="student_email">Contact Email <em>*</em></label>
           <% if @student.new_record? %>
             <%= f.text_field :email %>
           <%else%>
@@ -63,7 +65,7 @@
           <%end%>
         </li>
         <li>
-          <label>Confirm Contact Email <em>*</em></label>
+          <label for="student_email_confirmation">Confirm Contact Email <em>*</em></label>
           <% if @student.new_record? %>
             <%= f.text_field :email_confirmation, :value => (@student.email unless @student.new_record?) %>
           <%else%>
@@ -71,11 +73,11 @@
           <%end%>
         </li>
         <li>
-          <label>Mobile</label>
+          <label for="student_mobile">Mobile</label>
           <%= f.text_field :mobile, :maxlength => 10 %>
         </li>
         <li>
-          <label>Phone</label>
+          <label for="student_phone">Phone</label>
           <%= f.text_field :phone, :maxlength => 10 %>
         </li>
       </ol>
@@ -83,25 +85,25 @@
     <div class="column fltleft">
       <ol>
         <li>
-          <label>Address 1 <em>*</em></label>
+          <label for="student_address1">Address 1 <em>*</em></label>
           <%= f.text_field :address1 %>
         </li>
         <li>
-          <label>Address 2</label>
+          <label for="student_address2">Address 2</label>
           <%= f.text_field :address2 %>
         </li>
         <li>
-          <label>Suburb <em>*</em></label>
+          <label for="student_suburb">Suburb <em>*</em></label>
           <%= f.text_field :suburb %>
         </li>
         <li>
-          <label>State <em>*</em></label>
+          <label for="state">State <em>*</em></label>
           <% state = get_state %>
           <%= text_field_tag "state", state.try(:name), :readonly => true %>
           <%= f.hidden_field(:state_id, :value => state.try(:id))%>
         </li>
         <li>
-          <label>Post code <em>*</em></label>
+          <label for="student_post_code">Post code <em>*</em></label>
           <%= f.text_field :post_code, :class => "short", :maxlength => 4 %>
         </li>
       </ol>
@@ -112,15 +114,15 @@
       <div >
         <ol>
           <li>
-            <label>Email <em>*</em></label>
+            <label for="student_login_email">Email <em>*</em></label>
             <%= f.text_field :login_email %>
           </li>
           <li>
-            <label>Password <em>*</em></label>
+            <label for="student_password">Password <em>*</em></label>
             <%= f.password_field :password %>
           </li>
           <li>
-            <label>Confirm password <em>*</em></label>
+            <label for="student_password_confirmation">Confirm password <em>*</em></label>
             <%= f.password_field :password_confirmation %>
           </li>
         </ol>
@@ -131,45 +133,46 @@
   <fieldset>
     <legend>Application details</legend>
     <p>
-      <%= f.label :name, "School Name" %>
+      <label for="student_school_id">School name</label>
       <%= f.collection_select :school_id, School.all, :id, :display_title, :prompt => true %>
     </p>
     <!-- when the school is a esa identified school -->
     <div id="eas_yes">
-      <p><span class="info-tip">This school is a government-identified low socioeconomic high school that is on the UAC EAS list of identified schools and you are eligible for Sydney Early Entry (E12) Scheme.</span></p>
+      <p><label class="st-fnt"><span class="info-tip">This school is a government-identified low socioeconomic high school that is on the UAC EAS list of identified schools and you are eligible for Sydney Early Entry (E12) Scheme.</span></label></p>
     </div>
     <!-- when the school is NOT a esa identified schhol -->
     <div id="eas_no"><p >
-        <span class="info-tip">Your school is not a government-identified low socioeconomic high school you will need to complete an <a href="http://www.uac.edu.au/undergraduate/eas/" target="_blank">Educational Access Scheme (EAS)</a> to demonstrate financial hardship to be eligible for the E12 scheme.</span></p>
-      	<p><%= f.check_box(:sec_school_accept) %>   I understand my application will not be considered unless I lodge an EAS application form. UAC will provide the University with information regarding the status of my EAS application.</p></div>
+        <label class="st-fnt"><span class="info-tip">Your school is not a government-identified low socioeconomic high school you will need to complete an <a href="http://www.uac.edu.au/undergraduate/eas/" target="_blank">Educational Access Scheme (EAS)</a> to demonstrate financial hardship to be eligible for the E12 scheme.</span></label></p>
+      	<p><%= f.check_box(:sec_school_accept) %>   <label for="student_sec_school_accept" class="long-des declaration" >I understand my application will not be considered unless I lodge an EAS application form. UAC will provide the University with information regarding the status of my EAS application.</p></div>
     <p>
-      <%= f.label :name, "Course" %>
+     <label for="student_course_id">Course</label>
       <%= f.collection_select :course_id, Course.all, :id, :display_course_name %>
     </p>
 
-    <p>1. Outline the co-curricular activities in which you have been involved in. These could be sports, cultural and or community activities, or school leadership roles. Choose one example and tell us why you chose to undertake that activity and what you learned or gained from it. <em>*</em>
+    <p><label class="long-des" for="student_note1">1. Outline the co-curricular activities in which you have been involved in. These could be sports, cultural and or community activities, or school leadership roles. Choose one example and tell us why you chose to undertake that activity and what you learned or gained from it. <em>*</em></label>
       <br>
       <%= f.text_area :note1, :class => "long", :maxlength => 250 %> (Maximum 250 characters)</p>
     <p>
 
-      2. What would you consider your three best academic achievements? Select the one of which you are most proud and tell us why it is important to you. <em>*</em>
+      <label class="long-des" for="student_note2">2. What would you consider your three best academic achievements? Select the one of which you are most proud and tell us why it is important to you. <em>*</em></label>
       <br><%= f.text_area :note2, :class => "long", :maxlength => 250 %><br /> (Maximum 250 characters)
     </p>
     <p>
 
-      3. Tell us why you want to study the course you have chosen. What is your interest in this area and what do you hope to achieve from studying this course? <em>*</em>
+      <label class="long-des" for="student_note3">3. Tell us why you want to study the course you have chosen. What is your interest in this area and what do you hope to achieve from studying this course? <em>*</em></label>
       <br><%= f.text_area :note3, :class => "long", :maxlength => 250 %> (Maximum 250 characters)
     </p>
   </fieldset>
 
   <fieldset>
     <legend>Attachment details</legend>
-    <div>Upload your supporting documents these may be a recent school report, award, certificate or reference from a teacher or employee.</div>
-    <div><span class="info-tip">Only upload PDF documents and files no larger than 2MB.</span></div>
+    <label class="st-fnt"><div>Upload your supporting documents these may be a recent school report, award, certificate or reference from a teacher or employee.</div></label>
+    <label class="st-fnt"><div><span class="info-tip">Only upload PDF documents and files no larger than 2MB.</span></div></label>
+    <div class="clr"></div>
     <% if @student.new_record? %>
        <% Student.number_of_files.to_i.times do |i| %>
          <div class="fltleft">
-		     <p><label>Attachment <%= i + 1 %> </label> <%= text_field "file_name", "#{i}" %></p> 
+		     <p><label for="file_name_<%# {i} %>">Attachment <%= i + 1 %> </label> <%= text_field "file_name", "#{i}" %></p> 
 		</div>
 		<div class="fltleft">
 		   <p><label>Upload</label> <%= file_field "file", "#{i}" %></p>   
@@ -201,23 +204,23 @@
 
   <div >
     <%= f.check_box(:declaration2) %>     
-    I understand that my application will not be considered unless my Principal supports my application and submits the supporting E12 Principal’s Application form.
+    <label for="student_declaration2" class="long-des declaration">I understand that my application will not be considered unless my Principal supports my application and submits the supporting E12 Principal’s Application form.</label>
     <br/>
     <p><b>Declaration</b><br/>
 
       <%= f.check_box :declaration1 %>
-      I declare that the information provided in this application form and in the attachments is correct and complete. I give permission for the University of Sydney to contact my Principal or teachers about my marks and achievements and I understand that this information will be used only for assessing my E12 application.
+      <label for="student_declaration1" class="long-des declaration">I declare that the information provided in this application form and in the attachments is correct and complete. I give permission for the University of Sydney to contact my Principal or teachers about my marks and achievements and I understand that this information will be used only for assessing my E12 application.</label>
       <br/></p>
 
-    <p><b>Information</b><br />The information you provide on this form will be held by the University of Sydney and used only for assessing your application. It will not be disclosed outside the University except with your consent or if required or authorised by law. You have the right to access and correct any information about you held by the University. Please contact the <a href="http://sydney.edu.au/arms/gipa/contacts.shtml" target="_blank" >University's Right to Information Officers</a> for further information.
+    <p><label class="st-fnt"><b>Information</b><br />The information you provide on this form will be held by the University of Sydney and used only for assessing your application. It will not be disclosed outside the University except with your consent or if required or authorised by law. You have the right to access and correct any information about you held by the University. Please contact the <a href="http://sydney.edu.au/arms/gipa/contacts.shtml" target="_blank" >University's Right to Information Officers</a> for further information.</label>
     </p>
 
   </div>
   <p><% if @student.new_record? %>
       <%= recaptcha_tags %>
     <% end %></p>
-  <p><%= f.check_box :declaration3 %> if your application is complete, please submit now. Once your application has been submitted you are not able to make any changes or resubmit. <br/>
-If you cannot complete the application at this time you can save it and log back in at a later date.</p>
+  <p><%= f.check_box :declaration3 %> <label for="student_declaration3" class="long-des declaration">if your application is complete, please submit now. Once your application has been submitted you are not able to make any changes or resubmit. <br/>
+If you cannot complete the application at this time you can save it and log back in at a later date.</label></p>
   <div class="buttons">
     <%if @student.new_record? %>
      <%= link_to "Back", root_path, :class => "submit-button button" %>

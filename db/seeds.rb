@@ -6,6 +6,10 @@ User.create(:email => 'easprincipal@example.com', :password => user_password, :p
 User.create(:email => 'noneasprincipal@example.com', :password => user_password, :password_confirmation => user_password, :user_type => 'PRINCIPAL')
 User.create(:email => 'admin@example.com', :password => user_password, :password_confirmation => user_password, :user_type => 'ADMIN')
 
+School.create(:name => 'Ardlethan Central School', :category => 'EAS', :email => 'easprincipal@example.com', :user_id => User.find_by_email('easprincipal@example.com').id)
+School.create(:name => 'Armidale High School', :category => 'NONEAS', :email => 'noneasprincipal@example.com', :user_id => User.find_by_email('noneasprincipal@example.com').id)
+
+
  
 #creating states
 State.create(:name => 'WA')

@@ -2387,14 +2387,15 @@ p.paging a.prev, p.paging span.prev {
 }
 /* PRS Login */
 .login_wrapper {
-    width:800px;
+    width:900px;
     margin:50px auto;
 }
 .login-set-align {
     margin:0 0 0 12em;
 }
 .login_wrapper .column {
-  width:350px;  
+  width:45%;  
+  margin:0 28px !important;
 }
 .view-column {
     width:350px;
@@ -2415,7 +2416,7 @@ p.paging a.prev, p.paging span.prev {
 }
 #flash_alert {
     position: relative;
-    left:464px;
+    left:524px;
     top:110px;
     z-index: 1;
     color:red;
@@ -2461,5 +2462,29 @@ p.paging a.prev, p.paging span.prev {
     color:red;
 }
 .no-spc-abv {
+    margin-top:-20px !important;
+}
+#content form.formbuilder label.long-des {
+    width:auto;
+    text-align: left;
+    
+}
+#content form.formbuilder label.long-des.declaration {
+    font-weight:normal;
+    width:890px;
+    font-size:12px;
+}
+#content form.formbuilder label.multiple-control {
+    width:auto;
+}
+.multiple-control span  {
+    width:12em;
+    float:left;
+    margin:0 3px 0 0;
+}
+#content form.formbuilder label.st-fnt {
+    font-size: 12px;
+    font-weight: normal;
+    width:auto;
     margin-top:-20px !important;
 }
