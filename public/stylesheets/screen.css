@@ -2170,7 +2170,7 @@ p.paging a.prev, p.paging span.prev {
     font-size: 1.2em;
     font-weight: bold;
     text-decoration: none;
-    font-family: Lucida Grande;
+    font-family: "Lucida Grande", "MS Shell Dlg";
     margin:0 0 0 13px;
     text-decoration: none !important;
 
@@ -2486,5 +2486,5 @@ p.paging a.prev, p.paging span.prev {
     font-size: 12px;
     font-weight: normal;
     width:auto;
-    margin-top:-20px !important;
+    text-align: left;
 }
