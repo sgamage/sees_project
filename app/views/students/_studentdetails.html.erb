@@ -2,35 +2,35 @@
 <fieldset><legend>Student Details</legend>
   <div><ol>
       <li>
-        <label>Student Name:</label>
-        <label class="field"><%= student.title %> <%= student.first_name %> <%= student.last_name %></label>
+        <span class="field-title" >Student Name:</span>
+        <span class="field"><%= student.title %> <%= student.first_name %> <%= student.last_name %></span>
       </li>
       <li>
-        <label>Date of birth:</label>
-        <label class="field"><%= student.date_of_birth %></label>
+        <span class="field-title" >Date of birth:</span>
+        <span class="field"><%= student.date_of_birth %></span>
       </li>
       <% if !empty_string?(student.parent_name) %>
       <li>
-        <label>Parent or carers name:</label>
-        <label class="field"><%= student.parent_name %></label>
+        <span class="field-title" >Parent or carers name:</span>
+        <span class="field"><%= student.parent_name %></span>
       </li>
       <% end %>
       <% if !empty_string?(student.parent_phone) %>
       <li>
-        <label>Parent or carers phone:</label>
-        <label class="field"><%= student.parent_phone %></label>
+        <span class="field-title" >Parent or carers phone:</span>
+        <span class="field"><%= student.parent_phone %></span>
       </li>
       <%end%>
       <% if !empty_string?(student.parent_mobile) %>
       <li>
-        <label>Parent or carers mobile:</label>
-        <label class="field"><%= student.parent_mobile %></label>
+        <span class="field-title" >Parent or carers mobile:</span>
+        <span class="field"><%= student.parent_mobile %></span>
       </li>
       <% end %>
       <% if !empty_string?(student.uac_number) %>
       <li>
-        <label>UAC applicant number:</label>
-        <label class="field"><%= student.uac_number %></label>
+        <span class="field-title" >UAC applicant number:</span>
+        <span class="field"><%= student.uac_number %></span>
       </li>
       <%end%>
     </ol>
@@ -40,7 +40,7 @@
     <div ><ol>
         <% if !empty_string?(student.address1) %>
         <li>
-          <label>Address:</label>
+          <span class="field-title" >Address:</span>
           <span class="field"><%= student.address1 %>,
           	 <% if !empty_string?(student.address2) %>
           	 <br/> <%= student.address2 %>
@@ -51,20 +51,20 @@
         <%end%>
         <% if !empty_string?(student.email) %>
         <li>
-          <label>Email:</label>
-          <label class="field"><%= student.email %></label>
+          <span class="field-title" >Email:</span>
+          <span class="field"><%= student.email %></span>
         </li>
         <% end %>
         <% if !empty_string?(student.mobile) %>
         <li>
-          <label>Mobile:</label>
-          <label class="field"><%= student.mobile %></label>
+          <span class="field-title" >Mobile:</span>
+          <span class="field"><%= student.mobile %></span>
         </li>
         <%end%>
         <% if !empty_string?(student.phone) %>
         <li>
-          <label>Phone:</label>
-          <label class="field"><%= student.phone %></label>
+          <span class="field-title" >Phone:</span>
+          <span class="field"><%= student.phone %></span>
         </li>
         <%end%>
       </ol>
@@ -75,12 +75,12 @@
     <fieldset>
     <legend>Student Application Details</legend>
     <p>
-      <label >School Name:</label>
-      <label class="field"><%= student.try(:school).try(:name) %></label>
+      <span class="field-title"  >School Name:</span>
+      <span class="field"><%= student.try(:school).try(:name) %></span>
     </p>
     <p>
-      <label >Course:</label>
-      <label class="field"><%= student.try(:course).try(:name) %></label>
+      <span class="field-title"  >Course:</span>
+      <span class="field"><%= student.try(:course).try(:name) %></span>
       </select>
     </p>
     <% if !empty_string?(student.note1) %>
@@ -110,7 +110,7 @@
 	    <div>
 	      <% student.student_files.each do |attachment| %>
 	      	<p>
-	         <label><%= attachment.display_name %></label>
+	         <span><%= attachment.display_name %></span>
 	         <a href="/data/<%= attachment.name %>"><%= attachment.name %></a>
 	        </p>
 	      <% end %>

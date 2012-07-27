@@ -16,19 +16,19 @@
 <fieldset>
     <legend>Principal’s Recommendation</legend>
     <p>
-      <label>Support the student application: <em>*</em></label>
-      <%= f.select(:support_student, [['No', 0], ['Yes', 1]], {}) %>
+      <label for="feedback_support_student">Support the student application: <em>*</em></label>
+      <%= f.select(:support_student, [['',-1],['No', 0], ['Yes', 1]], {}) %>
     </p>
     <div id="principal_feedback_step1">
       <p>
         <% support_statues.each do |support_status| %>
-  	   <label>&nbsp;</label><%= f.radio_button :application_support_status_id, support_status.id %><%= support_status.status %><br />
+  	   <label class="multiple-control"><span>&nbsp;</span><%= f.radio_button :application_support_status_id, support_status.id %><%= support_status.status %></label><br />
   	<% end %>
        
       </p>
       <p id="other-textarea">
-        <label>Comment:</label>
-        <%= f.text_area :application_support_comment, :class => "normal"  %>
+        <label for="feedback_application_support_comment">Comment:<em id="comment-em">*</em></label></label>
+        <%= f.text_area :application_support_comment, :class => "normal"  %> <span class="hint-area ">(Maximum 250 words)</span>
       </p>
   	
   	

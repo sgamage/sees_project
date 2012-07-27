@@ -176,7 +176,19 @@ $(document).ready(function() {
 	feedback = $("#feedback_support_student option:selected").text();
 	principal_feedback(feedback);
 	
-	$("#feedback_application_support_status_id_3").attr("checked", "true");
+	$("#feedback_application_support_status_id_1").attr("checked", "true");
+        
+        $("#comment-em").hide();
+        
+        $("input:radio[name='feedback[application_support_status_id]']").click(function() {
+            //var value = $(this).val();
+            //console.log(value);
+            if ($(this).val() == 4) {
+                $("#comment-em").show();
+            } else {
+                $("#comment-em").hide();
+            }
+        });
 	
 })
 
@@ -203,10 +215,17 @@ function show_messages(str){
 function principal_feedback(feedback){
 	if(feedback == "No"){
 	  $("#principal_feedback_step1").show('slow');	
-	  $("#feedback_submit").attr('value', 'Submit');	
+          $("#feedback_submit").show('slow');
+	  $("#feedback_submit").attr('value', 'Submit');
+          
 	}
-	if(feedback == "Yes"){
-	  $("#principal_feedback_step1").hide('slow');	
+	else if(feedback == "Yes"){
+	  $("#principal_feedback_step1").hide('slow');
+          $("#feedback_submit").show('slow');
 	  $("#feedback_submit").attr('value', 'Next');
+	}
+        else {
+	  $("#principal_feedback_step1").hide('slow');	
+	  $("#feedback_submit").hide('slow');
 	}
 }

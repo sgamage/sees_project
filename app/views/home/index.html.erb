@@ -1,39 +1,47 @@
 <form class="formbuilder">
   <% if current_user.admin? %>
-    <h1>Administration</h1>
+    <h1>Administration - Sydney Early Entry Scheme - The University of Sydney</h1>
+  <% end %>  
+  <%- flash.each do |name, msg| -%>
+    <% unless msg.to_s.match(/You need to/) %>
+      <% unless msg.to_s.match(/incorrect-captcha-sol/) %>
+        <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+      <% end %> 
+    <% end %>
+  <%- end -%>
+  <% if current_user.admin? %>
     <fieldset>
       <legend>Application Search Criteria</legend>
       <div class="fltleft column">
         <ol>
           <li>
-            <label>School name</label>
+            <label for="schools_">School name</label>
             <%= collection_select :schools, '', School.all, :id, :display_title, :include_blank => true%>
           </li>
           <li>
-            <label>Course</label>
+            <label for="courses_">Course</label>
             <%= collection_select :courses, '', Course.all, :id, :name, :include_blank => true %>
           </li>
           <li>
-            <label></label>
-            <input type="submit" class="submit-button button" value="Search"/>
+            <input type="submit" class="submit-button button form-button" value="Search"/>
           </li>
         </ol>
       </div>
       <div class="column fltleft">
         <ol>
           <li>
-            <label>Status</label>
+            <label for="applicationstatus_">Status</label>
             <%= collection_select :applicationstatus, '', ApplicationStatus.all, :id, :status, :include_blank => true %>
           </li>
           <li>
-            <label>Student name</label>
+            <label for="student_name">Student name</label>
             <%= text_field_tag :student_name %>
           </li>
         </ol>
       </div>
     </fieldset>
   <% end %>  
-    <br />
+  <br />
   <fieldset>
     <legend>Application List</legend>
     <table id="submitted_applications" width="99%">

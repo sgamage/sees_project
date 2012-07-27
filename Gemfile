@@ -32,4 +32,3 @@ gem 'debugger'
 gem 'jquery-rails'
 gem 'devise'
 gem "recaptcha", :require => "recaptcha/rails"
-

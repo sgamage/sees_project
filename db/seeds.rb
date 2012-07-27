@@ -6,8 +6,11 @@ User.create(:email => 'easprincipal@example.com', :password => user_password, :p
 User.create(:email => 'noneasprincipal@example.com', :password => user_password, :password_confirmation => user_password, :user_type => 'PRINCIPAL')
 User.create(:email => 'admin@example.com', :password => user_password, :password_confirmation => user_password, :user_type => 'ADMIN')
 
-School.create(:name => 'Ardlethan Central School', :category => 'EAS', :email => 'easprincipal@example.com', :user_id => User.find_by_email('easprincipal@example.com').id)
-School.create(:name => 'Armidale High School', :category => 'NONEAS', :email => 'noneasprincipal@example.com', :user_id => User.find_by_email('noneasprincipal@example.com').id)
+#Airds High School,Mr,Maxwell,Foord,Principal,2 Briar Rd,CAMPBELLTOWN SOUTH,NSW,2560,02 46255811,smtpsamplemailsender@gmail.com,EAS
+#Alexandria Park Community School,Mr ,Rick ,Turansky ,Principal,57-77 Mitchell Rd,ALEXANDRIA,NSW,2015,02 96981967,alexparkcs-c.school@det.nsw.edu.au,NON-EAS
+
+School.create(:name => 'Airds High School',:principal_title => 'Mr',:principal_firstname =>'Maxwell',:principal_surname =>'Foord', :position =>'PRINCIPAL',:address =>'Briar Rd',:suburb => 'CAMPBELLTOWN SOUTH',:state =>'NSW', :postcode => '2015', :phone => '02 96981967', :category => 'EAS', :email => 'easprincipal@example.com', :user_id => User.find_by_email('easprincipal@example.com').id)
+School.create(:name => 'Alexandria Park Community School',:principal_title => 'Mr',:principal_firstname =>'Rick',:principal_surname =>'Turansky', :position =>'PRINCIPAL',:address =>'57-77 Mitchell Rd',:suburb => 'ALEXANDRIA',:state => 'NSW', :postcode => '2015', :phone => '02 96981967', :category => 'NONEAS', :email => 'noneasprincipal@example.com', :user_id => User.find_by_email('noneasprincipal@example.com').id)
 
 
  
@@ -107,5 +110,6 @@ Course.create(:name => 'Exercise and Sport Science', :faculty_name => 'Health Sc
 ApplicationSupportStatus.create(:status => "From my knoledge this student doesnot meet the E12 L-SEC eligibility criteria")
 ApplicationSupportStatus.create(:status => "I believe it is unlikely the student will meet the E12 course criteria")
 ApplicationSupportStatus.create(:status => "Does not attend this school")
+ApplicationSupportStatus.create(:status => "Other")
 
 

@@ -7,11 +7,13 @@
   			<%  count = 0 
   				questions.each do |question| %>
                     <li>
-  					<label class="long"><%= question.question_text %>:</label>
+  					<label class="long-ques">
+                                          <span><%= question.question_text %>: </span>
   					<% answer_list.each do |answer| %>
   					  <%= radio_button_tag question.id, answer.id, false, :class => "radio_select"%><%= answer.answer_text%>
   					<% end %>
   					<%= hidden_field question.id, 'answer', :class => "answer" %>
+                                          </label>
                    </li>
   			<% end %>
                       </ol></div>

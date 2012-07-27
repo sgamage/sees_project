@@ -19,6 +19,9 @@ class StudentsController < ApplicationController
   # GET /students/1/edit
   def edit
     @student = Student.find(@current_student_id)
+    if @student.application_status_id 
+      redirect_to student_path(@student)
+    end     
   end
 
   # POST /students
@@ -26,41 +29,42 @@ class StudentsController < ApplicationController
   def create
     @student = Student.new(params[:student])
     #TODO: captcha removed for demo
-    if verify_recaptcha
-      @student.validate_submit = params["final_submit_flag"] 
-      @student.attached_files = params["file"]
-      #debugger
-      if @student.save
-        Student.number_of_files.to_i.times do |i|
-          unless params["file"].nil? || params["file"]["#{i}"].nil?
-            tmp = params["file"]["#{i}"]#.tempfile
-            file_name = params["file"]["#{i}"].original_filename
-            file = File.join("public/data", "#{@student.id}#{file_name}")
+    @student.captcha_verified = verify_recaptcha
+    @student.validate_submit = params["final_submit_flag"] 
+    @student.attached_files = params["file"]
+    @attachments = Attachment.attachment_list(params["file"], params["file_name"])
+    if @student.save
+      Student.number_of_files.to_i.times do |i|
+        unless params["file"].nil? || params["file"]["#{i}"].nil?
+          tmp = params["file"]["#{i}"]#.tempfile
+          file_name = params["file"]["#{i}"].original_filename
+          directory_path = "public/data/#{@student.id}" 
+          Dir.mkdir(directory_path) unless directory_exists?(directory_path)
+          file_path = "public/data/#{@student.id}/#{file_name}"
+          unless file_exist?(file_path)
+            file = File.join("public/data/#{@student.id}", "#{file_name}")  
             display_name = params["file_name"]["#{i}"]
-            StudentFile.create(:name => "#{@student.id}#{file_name}", :student_id => @student.id, :display_name => display_name)
-            FileUtils.cp tmp.path, file
-          end  
-        end
-        message = "created"
-        if @student.validate_submit == "1"
-           message = "submitted"
-           @student.complete if @student.vaidate_required_field?   
-        end
-        flash[:application_sucessful] = "Application successfully #{message}"
-        if current_user
-          redirect_to student_path(@student)
-        else  
-          redirect_to new_student_path
-        end
-          
-      else
-        @student.confirm_email = params[:student][:email_confirmation]
-        render :action => "new" 
+            StudentFile.create(:name => "#{file_name}", :student_id => @student.id, :display_name => display_name)
+            FileUtils.cp tmp.path, file 
+          end
+        end  
       end
+      message = "created"
+      if @student.validate_submit == "1"
+         message = "submitted"
+         @student.complete if @student.vaidate_required_field?   
+      end
+      flash[:application_sucessful] = "Application successfully #{message}"
+      if current_user
+        redirect_to student_path(@student)
+      else  
+        redirect_to new_student_path
+      end
+        
     else
-      @student.errors.add(:base, "Captcha verification failed")
+      @student.confirm_email = params[:student][:email_confirmation]
       render :action => "new" 
-    end  
+    end
   end
 
   def update
@@ -73,10 +77,16 @@ class StudentsController < ApplicationController
         unless params["file"].nil? || params["file"]["#{i}"].nil?
           tmp = params["file"]["#{i}"]#.tempfile
           file_name = params["file"]["#{i}"].original_filename
-          file = File.join("public/data", "#{@student.id}#{file_name}")
-          display_name = params["file_name"]["#{i}"]
-          StudentFile.create(:name => "#{@student.id}#{file_name}", :student_id => @student.id, :display_name => display_name)
-          FileUtils.cp tmp.path, file
+          directory_path = "public/data/#{@student.id}" 
+          Dir.mkdir(directory_path) unless directory_exists?(directory_path)
+          file_path = "public/data/#{@student.id}/#{file_name}"
+          unless file_exist?(file_path)
+            file = File.join("public/data/#{@student.id}", "#{file_name}")  
+            display_name = params["file_name"]["#{i}"]
+            StudentFile.create(:name => "#{file_name}", :student_id => @student.id, :display_name => display_name)
+            FileUtils.cp tmp.path, file
+          end
+          
         end  
       end
       message = "saved"
@@ -114,5 +124,14 @@ class StudentsController < ApplicationController
   def authorize_student
     @current_student_id = (current_user.student?) ? current_user.student_id : params[:id]
   end
+  
+  private
+  def directory_exists?(directory)
+    File.directory?(directory)
+  end
+  
+  def file_exist?(file_path)
+    File.exist?(file_path)
+  end  
   
 end

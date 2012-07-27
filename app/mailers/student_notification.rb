@@ -3,6 +3,10 @@ class StudentNotification < ActionMailer::Base
   
   def notification_email(student)
     @student = student
+    email_attachments = StudentFile.find_all_by_student_id(@student.id)
+    email_attachments.each do |file|
+      attachments[file.name.to_s] = File.read("#{Rails.root}/public/data/#{@student.id}/#{file.name}")
+    end
     mail(:to => student.email, :subject => "Thank-you for submitting an E12 application")
   end
   

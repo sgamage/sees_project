@@ -2488,3 +2488,39 @@ p.paging a.prev, p.paging span.prev {
     width:auto;
     text-align: left;
 }
+.field-title {
+    display: inline-block;
+    font-weight: bold;
+    text-align: right;
+    vertical-align: top;
+    width: 12em;
+}
+#content form.formbuilder .field-title.long {
+    width: 39em;
+}
+#content form.formbuilder label.long-ques span {
+    display: inline-block;
+    font-weight: bold;
+    margin-top: 0.2em;
+    text-align: right;
+    vertical-align: top;
+    width: 36em;
+}
+#content form.formbuilder label.long-ques  {
+    width:100%;
+}
+#content form.formbuilder label.recon-asr {
+    display: inline-block;
+    font-weight: normal;
+    margin-top: 0.2em;
+    text-align: left;
+    vertical-align: top;
+    width: auto;
+    padding:0 0 0 12em;
+}
+#content form.formbuilder li input.button.form-button {
+    margin:0 0 0 11em;
+}
+.hint-area {
+      margin:0 0 0 12em;
+}

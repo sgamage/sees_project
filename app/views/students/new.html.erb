@@ -1,2 +1,9 @@
 <h1>Student application</h1>
+<%- flash.each do |name, msg| -%>
+    <% unless msg.to_s.match(/You need to/) %>
+      <% unless msg.to_s.match(/incorrect-captcha-sol/) %>
+        <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+      <% end %> 
+    <% end %>
+  <%- end -%>
 <%= render 'form' %>

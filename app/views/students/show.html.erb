@@ -1,4 +1,4 @@
-<h1>Student Application For <%= @student.full_name %></h1>
+<h1>Student Application For <%= @student.full_name %> </h1>
 <%= render :partial => 'studentdetails', :locals => {:student => @student} %>
 <div class="buttons  form-buttons">
 <%= (link_to 'Edit', edit_student_path(@student), :class => "submit-button button") unless @student.vaidate_required_field? %>

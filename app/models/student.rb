@@ -8,8 +8,8 @@ class Student < ActiveRecord::Base
                   :parent_mobile, :parent_name, :parent_phone, :phone, :post_code, :school_id, :state_id, 
                   :suburb, :title, :uac_number, :user_id
   
-  attr_accessible :login_email, :password, :password_confirmation, :email_confirmation, :sec_school_accept, :validate_submit, :attached_files 
-  attr_accessor :login_email, :password, :password_confirmation, :email_confirmation, :sec_school_accept, :validate_submit, :attached_files
+  attr_accessible :login_email, :password, :password_confirmation, :email_confirmation, :sec_school_accept, :validate_submit, :attached_files, :captcha_verified 
+  attr_accessor :login_email, :password, :password_confirmation, :email_confirmation, :sec_school_accept, :validate_submit, :attached_files, :captcha_verified
                   
   belongs_to :user
   validates_associated :user   
@@ -18,18 +18,18 @@ class Student < ActiveRecord::Base
   validates :email_confirmation, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i}, :allow_blank => Proc.new { |a| a.email.blank?} 
   validates_confirmation_of :email
   validates :school, :presence => true
+  validates :course, :presence => true
   
-  validates :uac_number, :uniqueness => true, :numericality => true, :length => { :within => 1..7 }, :allow_blank => true
+  validates :uac_number, :uniqueness => true, :numericality => true, :length => { :within => 1..9 }, :allow_blank => true
   validates :parent_phone, :length => { :within => 1..10 }, :allow_blank => true
   validates :parent_mobile, :length => { :within => 1..10 }, :allow_blank => true
   validates :mobile, :length => { :within => 1..10 }, :allow_blank => true
   validates :phone, :length => { :within => 1..10 }, :allow_blank => true
   validates :post_code, :length => { :within => 1..4 }, :allow_blank => true
   
-  validates :note1, :length => { :within => 1..250 }, :allow_blank => true
-  validates :note2, :length => { :within => 1..250 }, :allow_blank => true
-  validates :note3, :length => { :within => 1..250 }, :allow_blank => true
-  
+  validates :note1, :presence => {:message => "Please fill the Co-curricular activities"}
+  validates :note2, :presence => {:message => "Please fill academic achievements"}
+  validates :note3, :presence => {:message => "Please fill the reason for study the selected course"}
   
   belongs_to :state
   belongs_to :school
@@ -39,6 +39,7 @@ class Student < ActiveRecord::Base
                
 
   validate :new_user_login, :sec_school, :submittion, :validate_attachments, :application_acceptence, :accept_submit
+  validate :captcha_error
   
   before_create :update_user
   
@@ -70,6 +71,12 @@ class Student < ActiveRecord::Base
   def application_acceptence
     errors.add(:base, "You must accept Declaration") unless declaration1
     errors.add(:base, "You must accept Principal support for E12 application form") unless declaration2
+  end
+  
+  def captcha_error
+    if new_record?
+     errors.add(:base, "Captcha verification failed") unless captcha_verified
+    end 
   end
   
   def accept_submit
@@ -128,10 +135,10 @@ class Student < ActiveRecord::Base
   
   def notify_first_time_principal
     user = self.school.user
-    if user.sign_in_count == 0
+    #if user.sign_in_count == 0
       #user.sign_in_count == 0 means not yet login
       PrincipalNotification.notify_first_login(user).deliver  
-    end
+    #end
   end
   
   def principal_feedback

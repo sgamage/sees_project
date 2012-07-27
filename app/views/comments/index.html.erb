@@ -6,11 +6,11 @@
       <div class="fltleft column">
         <ol>
           <li>
-            <label>School name</label>
+            <label for="schools_">School name</label>
             <%= collection_select :schools, '', School.all, :id, :display_title%>
           </li>
           <li>
-            <label>Course</label>
+            <label for="courses_">Course</label>
             <%= collection_select :courses, '', Course.all, :id, :name %>
           </li>
           <li>
@@ -22,11 +22,11 @@
       <div class="column fltleft">
         <ol>
           <li>
-            <label>Status</label>
+            <label for="applicationstatus_">Status</label>
             <%= collection_select(:applicationstatus, '', ApplicationStatus.all, :id, :status) %>
           </li>
           <li>
-            <label>Student name</label>
+            <label for="student_name">Student name</label>
             <input type="text" />
           </li>
         </ol>

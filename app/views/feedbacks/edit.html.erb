@@ -9,7 +9,7 @@
     <div ><ol>
 
         <li>
-          <label class="long">Is there any other information you would like to add in support of the student?</label>
+          <label for="feedback_extra_note" class="long">Is there any other information you would like to add in support of the student?</label>
           <%= f.text_area :extra_note, :class => 'small' %>
         </li>
       </ol>
@@ -19,9 +19,9 @@
   </fieldset>
   <div>
     I have read the student's application and I can <br/>
-    <label></label><%= f.radio_button :recommandation_level, "recommand" %> Highly Recommend<br/>
-    <label></label><%= f.radio_button :recommandation_level, "highly_recommand" %> Recommend<br/>
-    <label></label><%= f.radio_button :recommandation_level, "support", :checked => true %> Support
+    <label class="recon-asr" for="feedback_recommandation_level_recommand"><%= f.radio_button :recommandation_level, "recommand" %> Highly Recommend</label><br/>
+    <label  class="recon-asr" for="feedback_recommandation_level_highly_recommand"><%= f.radio_button :recommandation_level, "highly_recommand" %> Recommend</label><br/>
+    <label class="recon-asr"  for="feedback_recommandation_level_support"><%= f.radio_button :recommandation_level, "support", :checked => true %> Support</label>
   </div>
     <div class="buttons">
       <input type="button" value="Submit" class="submit-button button" id="save">
